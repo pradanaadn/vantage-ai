@@ -8,10 +8,10 @@ Located in `/backend`, the Python application follows a service-oriented modular
 
 - `app/api/`: Entry points for requests. Versioned (`v1/`) and split by domain.
 - `app/core/`: Global settings (Pydantic), security/auth, and shared constants.
-- `app/db/`: Database connection, session management, and SQLAlchemy Base.
-- `app/models/`: Database entities (declarative models).
-- `app/schemas/`: Pydantic models for data validation and serialization (DTOs).
-- `app/services/`: Pure business logic, decoupled from API logic.
+- `app/services/`: Pure business logic and data access abstraction. 
+- `app/schemas/`: Pydantic models for data validation and serialization.
+
+*Note: The project is currently database-agnostic. Data access is handled through service classes, allowing for easy integration of SQL, NoSQL, or external APIs.*
 
 ## 3. Frontend Architecture (Vue 3 + TypeScript)
 Located in `/frontend`, the Vue application uses a feature-based modular structure:
