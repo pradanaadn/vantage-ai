@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import ItemsView from '@/modules/items/views/ItemsView.vue';
+
+// Modular route definitions could be imported here
+// e.g., import { itemRoutes } from '@/modules/items/router';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: ItemsView,
+    component: () => import('@/modules/items/views/ItemsView.vue'),
   },
 ];
 
