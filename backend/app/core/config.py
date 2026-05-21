@@ -10,6 +10,10 @@ class Settings(BaseSettings):
     USE_FIREBASE_EMULATORS: bool = True
     FIREBASE_SERVICE_ACCOUNT_PATH: str | None = None
     
+    # API Settings
+    API_V1_STR: str = "/api/v1"
+    BACKEND_CORS_ORIGINS: list[str] = ["*"]
+    
     # Emulator Hosts
     FIRESTORE_EMULATOR_HOST: str = "127.0.0.1:8080"
     FIREBASE_AUTH_EMULATOR_HOST: str = "127.0.0.1:9099"
