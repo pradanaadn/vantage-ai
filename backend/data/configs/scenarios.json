@@ -1,0 +1,19 @@
+{
+  "healthy": {
+    "income_ratio": 0.72,
+    "income_range": [500000, 8000000],
+    "expense_range": [100000, 3000000]
+  },
+
+  "unhealthy": {
+    "income_ratio": 0.35,
+    "income_range": [100000, 2000000],
+    "expense_range": [500000, 9000000]
+  },
+
+  "unstable": {
+    "income_ratio": 0.5,
+    "income_range": [100000, 15000000],
+    "expense_range": [100000, 12000000]
+  }
+}

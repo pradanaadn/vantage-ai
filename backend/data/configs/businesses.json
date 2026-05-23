@@ -1,0 +1,67 @@
+{
+  "coffee_shop": {
+    "income": [
+      "QRIS Kopi Susu",
+      "GoFood Settlement",
+      "GrabFood Settlement",
+      "Pembayaran Espresso",
+      "Pembayaran Manual Brew",
+      "Transfer Catering Kopi"
+    ],
+    "opex": [
+      "Pembelian Biji Kopi",
+      "Pembelian Susu Fresh Milk",
+      "Bayar Barista",
+      "Pembayaran Listrik Cafe",
+      "Pembelian Cup Plastik",
+      "Pembelian Gula Aren"
+    ],
+    "capex": [
+      "Pembelian Mesin Espresso",
+      "Pembelian Grinder Kopi",
+      "Renovasi Area Cafe"
+    ]
+  },
+
+  "restaurant": {
+    "income": [
+      "QRIS Restoran",
+      "Pembayaran Makan Siang",
+      "GoFood Settlement",
+      "Pembayaran Catering",
+      "Transfer Reservasi"
+    ],
+    "opex": [
+      "Pembelian Ayam",
+      "Pembelian Beras",
+      "Pembelian Sayur",
+      "Bayar Koki",
+      "Pembayaran Gas LPG",
+      "Pembayaran Listrik"
+    ],
+    "capex": [
+      "Pembelian Oven Industri",
+      "Pembelian Freezer",
+      "Renovasi Dapur"
+    ]
+  },
+
+  "toko_buah": {
+    "income": [
+      "Penjualan Buah Harian",
+      "QRIS Toko Buah",
+      "Transfer Pembelian Jeruk",
+      "Pembayaran Grosir Buah"
+    ],
+    "opex": [
+      "Pembelian Pisang",
+      "Pembelian Apel Fuji",
+      "Biaya Transport Pasar",
+      "Bayar Karyawan"
+    ],
+    "capex": [
+      "Pembelian Kulkas Pendingin",
+      "Pembelian Rak Display"
+    ]
+  }
+}
