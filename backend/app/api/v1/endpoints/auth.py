@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from app.schemas.auth import UserCreate, UserInfo
+from app.schemas.auth import UserCreate, UserInfo, LoginRequest
 from app.services import auth_service
 from firebase_admin.exceptions import FirebaseError
 from loguru import logger
@@ -25,20 +25,18 @@ async def signup(user_data: UserCreate):
         )
 
 
-@router.post("/login")
-async def login(email: str):
+@router.post("/login", response_model=UserInfo)
+async def login(request: LoginRequest):
     """
-    Login and get a custom token.
-    In a real app, this might be a GET or require password verification.
+    Verify a Firebase ID token and login.
     """
     try:
-        token = await auth_service.login_with_custom_token(email)
-        return {"access_token": token, "token_type": "bearer"}
+        return await auth_service.verify_token(request.id_token)
     except ValueError as e:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail=str(e))
     except FirebaseError as e:
         logger.error(f"Login API error: {e}")
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
     except Exception:
         logger.exception("Unexpected error in login endpoint")
         raise HTTPException(

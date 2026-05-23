@@ -28,11 +28,18 @@ class UserUpdate(UserBase):
     email: Optional[EmailStr] = None
     password: Optional[str] = None
     
-class UserInfo(UserBase):
+class UserInfo(BaseModel):
     uid: str
     email: Optional[EmailStr] = None
     email_verified: bool = False
+    display_name: Optional[str] = None
+    photo_url: Optional[str] = None
+    disabled: bool = False
+
+class LoginRequest(BaseModel):
+    id_token: str
 
 class TokenData(BaseModel):
     uid: str
     email: Optional[str] = None
+

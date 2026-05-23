@@ -20,25 +20,24 @@ async def signup(user_data: UserCreate) -> UserInfo:
         raise
 
 
-async def login_with_custom_token(email: str) -> str:
+async def verify_token(id_token: str) -> UserInfo:
     """
-    Handles "login" by generating a custom token for a user found by email.
-    Note: True login (password verification) is typically handled on the client-side
-    using the Firebase Client SDK. The backend provides custom tokens for 
-    trusted environments or administrative overrides.
+    Verifies a Firebase ID token and returns the user info.
     """
     try:
-        logger.info(f"Generating custom token for: {email}")
-        user = firebase_auth.get_user_by_email(email)
-        if not user:
-            logger.warning(f"Login failed: User not found for email {email}")
+        logger.info("Verifying ID token")
+        decoded_token = firebase_auth.verify_id_token(id_token)
+        uid = decoded_token.get("uid")
+        
+        user_info = firebase_auth.get_user(uid) # type: ignore
+        if not user_info:
+            logger.warning(f"User not found for uid {uid}")
             raise ValueError("User not found")
         
-        token = firebase_auth.create_custom_token(user.uid)
-        return token
+        return user_info
     except FirebaseError as e:
-        logger.error(f"Token generation failed for {email}: {e}")
+        logger.error(f"Token verification failed: {e}")
         raise
     except Exception:
-        logger.exception(f"Unexpected error during login for {email}")
+        logger.exception("Unexpected error during token verification")
         raise
