@@ -1,0 +1,100 @@
+{
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Access your SME Growth Center",
+      "emailLabel": "Business Email",
+      "passwordLabel": "Password",
+      "submitButton": "Enter Growth Center",
+      "forgotPassword": "Forgot?",
+      "dividerText": "or create account",
+      "footerText": "New to Vantage AI?",
+      "footerLink": "Create Account"
+    },
+    "signup": {
+      "title": "Create Account",
+      "subtitle": "Begin your growth journey",
+      "nameLabel": "Full Name",
+      "emailLabel": "Business Email",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm Password",
+      "submitButton": "Create Account",
+      "footerText": "Already have an account?",
+      "footerLink": "Sign In"
+    },
+    "branding": {
+      "name": "VANTAGE AI",
+      "slogan": "The Intelligent Growth Suite for Small & Medium Businesses",
+      "pillars": [
+        {
+          "id": "shield",
+          "title": "Profit Guard",
+          "description": "Real-time cash flow scanning and smart margin insights.",
+          "icon": "ShieldCheck",
+          "color": "primary"
+        },
+        {
+          "id": "radar",
+          "title": "Market Explorer",
+          "description": "Hyper-local competitive gap analysis and customer needs.",
+          "icon": "Radar",
+          "color": "secondary"
+        },
+        {
+          "id": "horizon",
+          "title": "Future Forecast",
+          "description": "Demographic shifts, consumer trends, and economic forecasts.",
+          "icon": "Telescope",
+          "color": "accent"
+        }
+      ],
+      "signupHighlights": {
+        "title": "Grow Your Business:",
+        "items": [
+          "Instant financial health scorecards from reports.",
+          "Hyper-local customer demand mapping.",
+          "Macroeconomic forecasting & local trends."
+        ]
+      }
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "✨ Empowering Small & Medium Businesses",
+      "title": "Grow Your Business with Confidence",
+      "subtitle": "Turn your financial reports, competitor moves, and market trends into a simple, beautiful growth plan designed for your success.",
+      "ctaPrimary": "Start Free Journey",
+      "ctaSecondary": "Watch Demo"
+    },
+    "stats": [
+      { "value": "100%", "label": "Data Security" },
+      { "value": "24/7", "label": "Growth Scanning" },
+      { "value": "3x", "label": "Faster Decisions" }
+    ],
+    "features": [
+      {
+        "id": "financial",
+        "title": "Profit Guard",
+        "description": "Instantly identify margin leaks, cash flow trends, and smart savings to maximize your profits.",
+        "icon": "TrendingUp"
+      },
+      {
+        "id": "market",
+        "title": "Market Explorer",
+        "description": "Discover local competitive gaps, demographic needs, and market opportunities to stand out.",
+        "icon": "Target"
+      },
+      {
+        "id": "macro",
+        "title": "Future Forecast",
+        "description": "Keep track of customer trends, inflation patterns, and local macroeconomic shifts to plan ahead.",
+        "icon": "Globe"
+      }
+    ],
+    "ctaSection": {
+      "title": "Ready to grow your business?",
+      "subtitle": "Join hundreds of small business owners using Vantage AI to reach new heights.",
+      "button": "Start Your Free Journey"
+    }
+  }
+}
