@@ -92,5 +92,8 @@ if __name__ == "__main__":
         business_type=BusinessType.COFFEE_SHOP,
         scenario=Scenario.HEALTHY,
         statement_mode=StatementMode.MIXED,
+        days=3,
         template="type",
+        output_pdf_path="output/statement_1d.pdf",
+        output_csv_path="output/statement_1d.csv",
     )

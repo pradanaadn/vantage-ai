@@ -9,6 +9,7 @@ from helpers.faker_helper import random_time
 from generators.description_generator import (
     income_description,
     expense_description,
+    variable_expense_description,
 )
 
 from generators.amount_generator import (
@@ -31,6 +32,45 @@ from datatypes import (
 BUSINESSES = load_json("configs/businesses.json")
 
 SCENARIOS = load_json("configs/scenarios.json")
+
+RECURRENT_EXPENSE_KEYWORDS = (
+    "admin",
+    "listrik",
+    "internet",
+    "investasi",
+    "langganan",
+    "subscription",
+    "sewa",
+    "asuransi",
+)
+
+RECURRENT_EXPENSE_DAYS = {1, 15, 25}
+
+
+def _is_recurrent_expense(description: str) -> bool:
+    lowered = description.lower()
+    return any(keyword in lowered for keyword in RECURRENT_EXPENSE_KEYWORDS)
+
+
+def _pick_expense_description(
+    expense_options: list[str],
+    current_date: datetime,
+) -> tuple[str, bool]:
+    recurrent_options = [
+        description for description in expense_options if _is_recurrent_expense(description)
+    ]
+    variable_options = [
+        description for description in expense_options if not _is_recurrent_expense(description)
+    ]
+
+    if current_date.day in RECURRENT_EXPENSE_DAYS and recurrent_options:
+        return random.choice(recurrent_options), True
+
+    if variable_options:
+        return random.choice(variable_options), False
+
+    chosen = random.choice(expense_options)
+    return chosen, _is_recurrent_expense(chosen)
 
 
 def generate_transactions(
@@ -127,15 +167,21 @@ def generate_transactions(
             # DESCRIPTION
             # =================================================
 
-            base_desc = random.choice(business_config[category])
-
             if category == Category.INCOME.value:
 
+                base_desc = random.choice(business_config[category])
                 desc = income_description(base_desc)
 
             else:
+                base_desc, is_recurrent_expense = _pick_expense_description(
+                    business_config[category], current_date
+                )
+                desc = (
+                    expense_description(base_desc)
+                    if is_recurrent_expense
+                    else variable_expense_description(base_desc)
+                )
 
-                desc = expense_description(base_desc)
 
             # =================================================
             # APPEND
