@@ -3,7 +3,17 @@ from pydantic import BaseModel
 
 
 class GeminiSettings(BaseModel):
-    API_KEY: str = ""  
+    API_KEY: str = ""
+
+
+class FirebaseSettings(BaseModel):
+    PROJECT_ID: str = "vantage-ai-default"
+    STORAGE_BUCKET: str | None = None
+    USE_EMULATORS: bool = True
+    SERVICE_ACCOUNT_PATH: str | None = None
+    EMULATOR_HOSTS: str
+    AUTH_EMULATOR_HOST: str
+    STORAGE_EMULATOR_HOST: str
 
 
 class Settings(BaseSettings):
