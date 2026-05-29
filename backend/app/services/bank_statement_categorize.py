@@ -90,7 +90,7 @@ if __name__ == "__main__":
     # )
     
     # logger.info(f"Batch job submitted successfully. Job Name: {batch_job.name}")
-    import time
-    # while True:
-    job_status = check_batch_job_status(batch_job_name="batches/lxa2scznfe5qak22egrlizkbw4r5lgop0aep")
-    print(job_status.dest.inlined_responses[0])
+    # import time
+    # # while True:
+    # job_status = check_batch_job_status(batch_job_name="batches/lxa2scznfe5qak22egrlizkbw4r5lgop0aep")
+    # print(job_status.dest.inlined_responses[0])
