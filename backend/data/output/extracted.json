@@ -1,0 +1,1762 @@
+[
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-700522",
+        "tipe": "CR",
+        "jumlah": 1186488.0,
+        "saldo_setelahnya": 75782514.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-700522"
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 1680675.0,
+        "saldo_setelahnya": 76990471.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 449776.0,
+        "saldo_setelahnya": 78671146.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "Pembelian Mesin Espresso REF-534423",
+        "tipe": "DB",
+        "jumlah": 739763.0,
+        "saldo_setelahnya": 79120922.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-534423"
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-566123",
+        "tipe": "CR",
+        "jumlah": 6071372.0,
+        "saldo_setelahnya": 87346297.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-566123"
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-330939",
+        "tipe": "CR",
+        "jumlah": 4284454.0,
+        "saldo_setelahnya": 81274925.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-330939"
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-117986",
+        "tipe": "CR",
+        "jumlah": 4078171.0,
+        "saldo_setelahnya": 79860685.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-117986"
+    },
+    {
+        "tanggal": "01/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 403974.0,
+        "saldo_setelahnya": 74596026.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "QRIS Kopi Susu REF-114358",
+        "tipe": "CR",
+        "jumlah": 7954571.0,
+        "saldo_setelahnya": 98753584.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-114358"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-367580",
+        "tipe": "CR",
+        "jumlah": 3263567.0,
+        "saldo_setelahnya": 97567605.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-367580"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "TF KE UD PERUM HARDIANSYAH MANDIRI REF-660436",
+        "tipe": "DB",
+        "jumlah": 776604.0,
+        "saldo_setelahnya": 96791001.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-660436"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-976758",
+        "tipe": "CR",
+        "jumlah": 4726818.0,
+        "saldo_setelahnya": 90799013.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-976758"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-573429",
+        "tipe": "DB",
+        "jumlah": 2559699.0,
+        "saldo_setelahnya": 96193885.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-573429"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-544272",
+        "tipe": "DB",
+        "jumlah": 1274102.0,
+        "saldo_setelahnya": 86072195.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-544272"
+    },
+    {
+        "tanggal": "02/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-125361",
+        "tipe": "DB",
+        "jumlah": 1889847.0,
+        "saldo_setelahnya": 94304038.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-125361"
+    },
+    {
+        "tanggal": "03/07/2026",
+        "keterangan": "QRIS FARAH SAPTONO, M.KOM.",
+        "tipe": "CR",
+        "jumlah": 1034839.0,
+        "saldo_setelahnya": 97825840.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "03/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-461435",
+        "tipe": "CR",
+        "jumlah": 3921732.0,
+        "saldo_setelahnya": 101747572.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-461435"
+    },
+    {
+        "tanggal": "03/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 692420.0,
+        "saldo_setelahnya": 101055152.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "04/07/2026",
+        "keterangan": "Pembelian Grinder Kopi REF-762405",
+        "tipe": "DB",
+        "jumlah": 474208.0,
+        "saldo_setelahnya": 98163890.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-762405"
+    },
+    {
+        "tanggal": "04/07/2026",
+        "keterangan": "QRIS Kopi Susu REF-437832",
+        "tipe": "CR",
+        "jumlah": 3604527.0,
+        "saldo_setelahnya": 103559475.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-437832"
+    },
+    {
+        "tanggal": "04/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-282231",
+        "tipe": "CR",
+        "jumlah": 1791058.0,
+        "saldo_setelahnya": 99954948.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-282231"
+    },
+    {
+        "tanggal": "04/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 2417054.0,
+        "saldo_setelahnya": 98638098.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "04/07/2026",
+        "keterangan": "TRF DARI IR. JASWADI PRANOWO, S.I.KOM BCA REF-394981",
+        "tipe": "CR",
+        "jumlah": 4451230.0,
+        "saldo_setelahnya": 108010705.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-394981"
+    },
+    {
+        "tanggal": "05/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-308654",
+        "tipe": "CR",
+        "jumlah": 5814487.0,
+        "saldo_setelahnya": 110127975.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-308654"
+    },
+    {
+        "tanggal": "05/07/2026",
+        "keterangan": "QRIS DRS. CARLA NABABAN",
+        "tipe": "CR",
+        "jumlah": 945278.0,
+        "saldo_setelahnya": 104313488.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "05/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-529742",
+        "tipe": "DB",
+        "jumlah": 1807369.0,
+        "saldo_setelahnya": 103368210.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-529742"
+    },
+    {
+        "tanggal": "05/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-325110",
+        "tipe": "DB",
+        "jumlah": 2835126.0,
+        "saldo_setelahnya": 105175579.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-325110"
+    },
+    {
+        "tanggal": "06/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-501964",
+        "tipe": "CR",
+        "jumlah": 4542037.0,
+        "saldo_setelahnya": 114670012.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-501964"
+    },
+    {
+        "tanggal": "06/07/2026",
+        "keterangan": "Transfer Catering Kopi REF-745449",
+        "tipe": "CR",
+        "jumlah": 5612902.0,
+        "saldo_setelahnya": 120282914.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Catering",
+        "no_referensi": "REF-745449"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "TRF DARI NARJI KURNIAWAN BCA REF-835673",
+        "tipe": "CR",
+        "jumlah": 1424848.0,
+        "saldo_setelahnya": 121707762.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-835673"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "QRIS DR. GALAR NAPITUPULU",
+        "tipe": "CR",
+        "jumlah": 6615102.0,
+        "saldo_setelahnya": 152291633.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-662181",
+        "tipe": "CR",
+        "jumlah": 2274716.0,
+        "saldo_setelahnya": 128009475.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-662181"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "Pembayaran Espresso REF-327985",
+        "tipe": "CR",
+        "jumlah": 6604132.0,
+        "saldo_setelahnya": 145813975.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-327985"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-299802",
+        "tipe": "CR",
+        "jumlah": 7645881.0,
+        "saldo_setelahnya": 139209843.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-299802"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-405015",
+        "tipe": "CR",
+        "jumlah": 4026997.0,
+        "saldo_setelahnya": 125734759.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-405015"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "TF KE CV PT WIBOWO MANDIRI REF-145977",
+        "tipe": "DB",
+        "jumlah": 137444.0,
+        "saldo_setelahnya": 145676531.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-145977"
+    },
+    {
+        "tanggal": "07/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-957377",
+        "tipe": "CR",
+        "jumlah": 3554487.0,
+        "saldo_setelahnya": 131563962.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-957377"
+    },
+    {
+        "tanggal": "08/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 504134.0,
+        "saldo_setelahnya": 158985456.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "08/07/2026",
+        "keterangan": "PEMBAYARAN ADINATA SANTOSO",
+        "tipe": "CR",
+        "jumlah": 3140902.0,
+        "saldo_setelahnya": 159489590.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "08/07/2026",
+        "keterangan": "PEMBAYARAN YUNITA KUSUMO",
+        "tipe": "CR",
+        "jumlah": 4057055.0,
+        "saldo_setelahnya": 156348688.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "09/07/2026",
+        "keterangan": "QRIS ONI UYAINAH",
+        "tipe": "CR",
+        "jumlah": 5211999.0,
+        "saldo_setelahnya": 170212696.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "09/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-817749",
+        "tipe": "DB",
+        "jumlah": 912918.0,
+        "saldo_setelahnya": 174533622.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-817749"
+    },
+    {
+        "tanggal": "09/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-772075",
+        "tipe": "CR",
+        "jumlah": 1197488.0,
+        "saldo_setelahnya": 160182944.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-772075"
+    },
+    {
+        "tanggal": "09/07/2026",
+        "keterangan": "QRIS DR. PATRICIA SAPTONO, S.PSI",
+        "tipe": "CR",
+        "jumlah": 5233844.0,
+        "saldo_setelahnya": 175446540.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "09/07/2026",
+        "keterangan": "PEMBAYARAN KIANDRA SIRAIT",
+        "tipe": "CR",
+        "jumlah": 4817753.0,
+        "saldo_setelahnya": 165000697.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "10/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-159239",
+        "tipe": "CR",
+        "jumlah": 3276705.0,
+        "saldo_setelahnya": 185806010.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-159239"
+    },
+    {
+        "tanggal": "10/07/2026",
+        "keterangan": "TRF DARI DANISWARA UTAMA BRI REF-655914",
+        "tipe": "CR",
+        "jumlah": 6355069.0,
+        "saldo_setelahnya": 180888691.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-655914"
+    },
+    {
+        "tanggal": "10/07/2026",
+        "keterangan": "TRF DARI JAMALIA HARIYAH CIMB REF-799529",
+        "tipe": "CR",
+        "jumlah": 1640614.0,
+        "saldo_setelahnya": 182529305.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-799529"
+    },
+    {
+        "tanggal": "11/07/2026",
+        "keterangan": "TF KE CV PT HASANAH GUNAWAN DANAMON REF-831693",
+        "tipe": "DB",
+        "jumlah": 2071186.0,
+        "saldo_setelahnya": 186022295.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-831693"
+    },
+    {
+        "tanggal": "11/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-583039",
+        "tipe": "CR",
+        "jumlah": 2287471.0,
+        "saldo_setelahnya": 188093481.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-583039"
+    },
+    {
+        "tanggal": "11/07/2026",
+        "keterangan": "TRF DARI DRS. PRIMA MANULLANG, S.PD PERMATA REF-138119",
+        "tipe": "CR",
+        "jumlah": 7082592.0,
+        "saldo_setelahnya": 194439939.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-138119"
+    },
+    {
+        "tanggal": "11/07/2026",
+        "keterangan": "PEMBAYARAN TALIA NASHIRUDDIN",
+        "tipe": "CR",
+        "jumlah": 1335052.0,
+        "saldo_setelahnya": 187357347.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "12/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 1334012.0,
+        "saldo_setelahnya": 193105927.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "12/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-337682",
+        "tipe": "CR",
+        "jumlah": 1550042.0,
+        "saldo_setelahnya": 194655969.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-337682"
+    },
+    {
+        "tanggal": "12/07/2026",
+        "keterangan": "PEMBAYARAN DINA PRATAMA, S.PSI",
+        "tipe": "CR",
+        "jumlah": 661879.0,
+        "saldo_setelahnya": 195317848.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "12/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-835037",
+        "tipe": "CR",
+        "jumlah": 4425556.0,
+        "saldo_setelahnya": 201667991.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-835037"
+    },
+    {
+        "tanggal": "12/07/2026",
+        "keterangan": "TRF DARI ISMAIL SAMOSIR BNI REF-476594",
+        "tipe": "CR",
+        "jumlah": 1924587.0,
+        "saldo_setelahnya": 197242435.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-476594"
+    },
+    {
+        "tanggal": "13/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-470827",
+        "tipe": "CR",
+        "jumlah": 3565068.0,
+        "saldo_setelahnya": 205233059.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-470827"
+    },
+    {
+        "tanggal": "13/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-378120",
+        "tipe": "CR",
+        "jumlah": 7351488.0,
+        "saldo_setelahnya": 212584547.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-378120"
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "PEMBAYARAN EVA WACANA",
+        "tipe": "CR",
+        "jumlah": 3207611.0,
+        "saldo_setelahnya": 216568984.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "TRF DARI ANGGABAYA LAKSITA, S.GZ MANDIRI REF-438265",
+        "tipe": "CR",
+        "jumlah": 1199178.0,
+        "saldo_setelahnya": 211195101.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-438265"
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "TRF DARI ULVA MANDASARI BNI REF-631864",
+        "tipe": "CR",
+        "jumlah": 828099.0,
+        "saldo_setelahnya": 213361373.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-631864"
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "Renovasi Area Cafe REF-850295",
+        "tipe": "DB",
+        "jumlah": 2588624.0,
+        "saldo_setelahnya": 209995923.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Renovasi",
+        "no_referensi": "REF-850295"
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-581374",
+        "tipe": "CR",
+        "jumlah": 2543902.0,
+        "saldo_setelahnya": 212533274.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-581374"
+    },
+    {
+        "tanggal": "14/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-770278",
+        "tipe": "DB",
+        "jumlah": 1205729.0,
+        "saldo_setelahnya": 209989372.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-770278"
+    },
+    {
+        "tanggal": "15/07/2026",
+        "keterangan": "PEMBAYARAN DR. SAMIAH YOLANDA",
+        "tipe": "CR",
+        "jumlah": 4648342.0,
+        "saldo_setelahnya": 219811040.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "15/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-962101",
+        "tipe": "DB",
+        "jumlah": 1406286.0,
+        "saldo_setelahnya": 215162698.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-962101"
+    },
+    {
+        "tanggal": "15/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 1503832.0,
+        "saldo_setelahnya": 218307208.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "16/07/2026",
+        "keterangan": "TRF DARI SUCI PUDJIASTUTI DANAMON REF-392506",
+        "tipe": "CR",
+        "jumlah": 7197838.0,
+        "saldo_setelahnya": 230834084.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-392506"
+    },
+    {
+        "tanggal": "16/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-589028",
+        "tipe": "CR",
+        "jumlah": 5329038.0,
+        "saldo_setelahnya": 223636246.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-589028"
+    },
+    {
+        "tanggal": "17/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-723728",
+        "tipe": "CR",
+        "jumlah": 4614575.0,
+        "saldo_setelahnya": 235448659.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-723728"
+    },
+    {
+        "tanggal": "17/07/2026",
+        "keterangan": "TF KE UD PERUM ANGGRIAWAN MULYANI CIMB REF-891597",
+        "tipe": "DB",
+        "jumlah": 461312.0,
+        "saldo_setelahnya": 240722509.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-891597"
+    },
+    {
+        "tanggal": "17/07/2026",
+        "keterangan": "PEMBAYARAN TITIN GUNAWAN",
+        "tipe": "CR",
+        "jumlah": 3003860.0,
+        "saldo_setelahnya": 243726369.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "17/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-804738",
+        "tipe": "CR",
+        "jumlah": 5735162.0,
+        "saldo_setelahnya": 241183821.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-804738"
+    },
+    {
+        "tanggal": "18/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-762290",
+        "tipe": "CR",
+        "jumlah": 1171631.0,
+        "saldo_setelahnya": 244898000.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-762290"
+    },
+    {
+        "tanggal": "18/07/2026",
+        "keterangan": "TRF DARI R.A. YULIANA SAPTONO BNI REF-979770",
+        "tipe": "CR",
+        "jumlah": 7927152.0,
+        "saldo_setelahnya": 248249332.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-979770"
+    },
+    {
+        "tanggal": "18/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-592057",
+        "tipe": "DB",
+        "jumlah": 2267117.0,
+        "saldo_setelahnya": 245982215.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-592057"
+    },
+    {
+        "tanggal": "18/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 2577874.0,
+        "saldo_setelahnya": 240322180.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "18/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 1997946.0,
+        "saldo_setelahnya": 242900054.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-628393",
+        "tipe": "CR",
+        "jumlah": 1384987.0,
+        "saldo_setelahnya": 258555148.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-628393"
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 895693.0,
+        "saldo_setelahnya": 251011258.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "Pembelian Mesin Espresso REF-208164",
+        "tipe": "DB",
+        "jumlah": 2420277.0,
+        "saldo_setelahnya": 251906951.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-208164"
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-733663",
+        "tipe": "CR",
+        "jumlah": 3557503.0,
+        "saldo_setelahnya": 249539718.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-733663"
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-959864",
+        "tipe": "CR",
+        "jumlah": 6158903.0,
+        "saldo_setelahnya": 257170161.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-959864"
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "QRIS HENDRA PRATAMA",
+        "tipe": "CR",
+        "jumlah": 5681701.0,
+        "saldo_setelahnya": 254327228.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "Renovasi Area Cafe REF-842018",
+        "tipe": "DB",
+        "jumlah": 1644641.0,
+        "saldo_setelahnya": 248645527.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Renovasi",
+        "no_referensi": "REF-842018"
+    },
+    {
+        "tanggal": "19/07/2026",
+        "keterangan": "QRIS DRG. KARYA WINARSIH",
+        "tipe": "CR",
+        "jumlah": 750450.0,
+        "saldo_setelahnya": 250290168.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "20/07/2026",
+        "keterangan": "QRIS ZIZI NASYIAH",
+        "tipe": "CR",
+        "jumlah": 7248970.0,
+        "saldo_setelahnya": 271952791.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "20/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-946903",
+        "tipe": "CR",
+        "jumlah": 4481701.0,
+        "saldo_setelahnya": 267438805.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-946903"
+    },
+    {
+        "tanggal": "20/07/2026",
+        "keterangan": "QRIS IR. MICHELLE SIHOMBING",
+        "tipe": "CR",
+        "jumlah": 1094574.0,
+        "saldo_setelahnya": 259649722.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "20/07/2026",
+        "keterangan": "Pembelian Gula Aren REF-232296",
+        "tipe": "DB",
+        "jumlah": 2734984.0,
+        "saldo_setelahnya": 264703821.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-232296"
+    },
+    {
+        "tanggal": "20/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-586512",
+        "tipe": "CR",
+        "jumlah": 3307382.0,
+        "saldo_setelahnya": 262957104.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-586512"
+    },
+    {
+        "tanggal": "21/07/2026",
+        "keterangan": "TF KE PT CV HASANAH (PERSERO) TBK DANAMON REF-538579",
+        "tipe": "DB",
+        "jumlah": 2440671.0,
+        "saldo_setelahnya": 267322776.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-538579"
+    },
+    {
+        "tanggal": "21/07/2026",
+        "keterangan": "Transfer Catering Kopi REF-658707",
+        "tipe": "CR",
+        "jumlah": 1871124.0,
+        "saldo_setelahnya": 273823915.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Catering",
+        "no_referensi": "REF-658707"
+    },
+    {
+        "tanggal": "21/07/2026",
+        "keterangan": "PEMBAYARAN RADIT HARIYAH, M.TI.",
+        "tipe": "CR",
+        "jumlah": 3984435.0,
+        "saldo_setelahnya": 271307211.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "21/07/2026",
+        "keterangan": "BIAYA ADMIN BULANAN",
+        "tipe": "DB",
+        "jumlah": 1815449.0,
+        "saldo_setelahnya": 269763447.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Admin Bank",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "21/07/2026",
+        "keterangan": "Pembelian Mesin Espresso REF-742021",
+        "tipe": "DB",
+        "jumlah": 2245019.0,
+        "saldo_setelahnya": 271578896.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-742021"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "TRF DARI ZELDA MANDALA, S.KOM PERMATA REF-816564",
+        "tipe": "CR",
+        "jumlah": 5662983.0,
+        "saldo_setelahnya": 287553700.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-816564"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-983690",
+        "tipe": "CR",
+        "jumlah": 661992.0,
+        "saldo_setelahnya": 298413886.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-983690"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "TRF DARI IR. YUSUF WAHYUDIN, M.FARM BRI REF-747746",
+        "tipe": "CR",
+        "jumlah": 3318430.0,
+        "saldo_setelahnya": 290872130.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-747746"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-872822",
+        "tipe": "CR",
+        "jumlah": 7254248.0,
+        "saldo_setelahnya": 278561459.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-872822"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "TRF DARI MAKARA GUNAWAN, S.H. CIMB REF-650882",
+        "tipe": "CR",
+        "jumlah": 2986334.0,
+        "saldo_setelahnya": 301400220.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-650882"
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "QRIS DR. OLIVIA SUWARNO",
+        "tipe": "CR",
+        "jumlah": 3329258.0,
+        "saldo_setelahnya": 281890717.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "22/07/2026",
+        "keterangan": "QRIS YESSI MANDASARI, S.KOM",
+        "tipe": "CR",
+        "jumlah": 6879764.0,
+        "saldo_setelahnya": 297751894.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "PEMBAYARAN LURHUR ZULAIKA, M.AK",
+        "tipe": "CR",
+        "jumlah": 1069246.0,
+        "saldo_setelahnya": 302262061.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "Transfer Catering Kopi REF-391772",
+        "tipe": "CR",
+        "jumlah": 7646671.0,
+        "saldo_setelahnya": 301192815.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Catering",
+        "no_referensi": "REF-391772"
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "Pembelian Grinder Kopi REF-473374",
+        "tipe": "DB",
+        "jumlah": 2203667.0,
+        "saldo_setelahnya": 296360627.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-473374"
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "TF KE UD PT HIDAYANTO TBK MANDIRI REF-409851",
+        "tipe": "DB",
+        "jumlah": 1779655.0,
+        "saldo_setelahnya": 298564294.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-409851"
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-232346",
+        "tipe": "DB",
+        "jumlah": 2814483.0,
+        "saldo_setelahnya": 293546144.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-232346"
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "TF KE PT PD TARIHORAN BRI REF-239519",
+        "tipe": "DB",
+        "jumlah": 1613603.0,
+        "saldo_setelahnya": 299786617.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-239519"
+    },
+    {
+        "tanggal": "23/07/2026",
+        "keterangan": "PEMBAYARAN JINAWI RAHAYU, M.TI.",
+        "tipe": "CR",
+        "jumlah": 557332.0,
+        "saldo_setelahnya": 300343949.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "24/07/2026",
+        "keterangan": "Pembelian Grinder Kopi REF-858652",
+        "tipe": "DB",
+        "jumlah": 2582167.0,
+        "saldo_setelahnya": 299679894.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-858652"
+    },
+    {
+        "tanggal": "24/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-449904",
+        "tipe": "DB",
+        "jumlah": 1634345.0,
+        "saldo_setelahnya": 298045549.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-449904"
+    },
+    {
+        "tanggal": "24/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-172318",
+        "tipe": "DB",
+        "jumlah": 1662765.0,
+        "saldo_setelahnya": 295790175.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-172318"
+    },
+    {
+        "tanggal": "24/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-290802",
+        "tipe": "DB",
+        "jumlah": 592609.0,
+        "saldo_setelahnya": 297452940.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-290802"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "QRIS TGK. GAMAN SIREGAR, M.M.",
+        "tipe": "CR",
+        "jumlah": 1240770.0,
+        "saldo_setelahnya": 244185030.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI ICHA MAHESWARA, M.KOM. REF-277429",
+        "tipe": "DB",
+        "jumlah": 6427269.0,
+        "saldo_setelahnya": 289362906.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-277429"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI RAHMI RAHIMAH REF-374078",
+        "tipe": "DB",
+        "jumlah": 6245071.0,
+        "saldo_setelahnya": 283117835.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-374078"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI USYI SINAGA, S.FARM REF-901750",
+        "tipe": "DB",
+        "jumlah": 3857942.0,
+        "saldo_setelahnya": 279259893.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-901750"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI TARI ANGGRIAWAN REF-186788",
+        "tipe": "DB",
+        "jumlah": 8697104.0,
+        "saldo_setelahnya": 270562789.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-186788"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI NADINE TARIHORAN REF-484218",
+        "tipe": "DB",
+        "jumlah": 5921296.0,
+        "saldo_setelahnya": 264641493.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-484218"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI IR. MILA PUSPASARI, M.AK REF-891120",
+        "tipe": "DB",
+        "jumlah": 8838953.0,
+        "saldo_setelahnya": 255802540.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-891120"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI DRG. DINDA HARYANTO, S.KOM REF-345678",
+        "tipe": "DB",
+        "jumlah": 3844779.0,
+        "saldo_setelahnya": 251957761.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-345678"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI IRA SIHOMBING REF-818754",
+        "tipe": "DB",
+        "jumlah": 3541338.0,
+        "saldo_setelahnya": 248416423.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-818754"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI TEGUH WIBOWO REF-995373",
+        "tipe": "DB",
+        "jumlah": 4842638.0,
+        "saldo_setelahnya": 243573785.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-995373"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI YANCE NASYIAH REF-604345",
+        "tipe": "DB",
+        "jumlah": 3677991.0,
+        "saldo_setelahnya": 239895794.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-604345"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TF GAJI DR. TIRTAYASA HIDAYANTO, S.PSI REF-480326",
+        "tipe": "DB",
+        "jumlah": 6246715.0,
+        "saldo_setelahnya": 233649079.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-480326"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TRF DARI DR. REZA MARBUN, S.T. BRI REF-753549",
+        "tipe": "CR",
+        "jumlah": 3132864.0,
+        "saldo_setelahnya": 236781943.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-753549"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-187718",
+        "tipe": "DB",
+        "jumlah": 2576502.0,
+        "saldo_setelahnya": 247309661.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-187718"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "TRF DARI TITI SIMANJUNTAK, M.AK BNI REF-131460",
+        "tipe": "CR",
+        "jumlah": 6872030.0,
+        "saldo_setelahnya": 254181691.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-131460"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "PEMBAYARAN PUTI ELMA PERTIWI",
+        "tipe": "CR",
+        "jumlah": 6162317.0,
+        "saldo_setelahnya": 242944260.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "Pembayaran Espresso REF-801708",
+        "tipe": "CR",
+        "jumlah": 7145105.0,
+        "saldo_setelahnya": 251330135.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-801708"
+    },
+    {
+        "tanggal": "25/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-439459",
+        "tipe": "DB",
+        "jumlah": 1443972.0,
+        "saldo_setelahnya": 249886163.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-439459"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI KARIMAH HUTAPEA REF-673754",
+        "tipe": "DB",
+        "jumlah": 3791861.0,
+        "saldo_setelahnya": 250389830.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-673754"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI PUTI GAWATI WINARSIH, M.FARM REF-236762",
+        "tipe": "DB",
+        "jumlah": 8907150.0,
+        "saldo_setelahnya": 241482680.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-236762"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI CALISTA SAMOSIR REF-537395",
+        "tipe": "DB",
+        "jumlah": 6447169.0,
+        "saldo_setelahnya": 235035511.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-537395"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI HANI GUNARTO, S.PD REF-892384",
+        "tipe": "DB",
+        "jumlah": 4307972.0,
+        "saldo_setelahnya": 230727539.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-892384"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI DT. GALUR ISWAHYUDI REF-195909",
+        "tipe": "DB",
+        "jumlah": 7939204.0,
+        "saldo_setelahnya": 222788335.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-195909"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI MAKARA SITUMORANG, S.PT REF-277971",
+        "tipe": "DB",
+        "jumlah": 3774613.0,
+        "saldo_setelahnya": 219013722.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-277971"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI DR. PURWADI GUNAWAN REF-642623",
+        "tipe": "DB",
+        "jumlah": 7037211.0,
+        "saldo_setelahnya": 211976511.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-642623"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI KH. JAYA NAINGGOLAN, S.GZ REF-435232",
+        "tipe": "DB",
+        "jumlah": 8581883.0,
+        "saldo_setelahnya": 203394628.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-435232"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI DR. LINTANG NARPATI REF-905134",
+        "tipe": "DB",
+        "jumlah": 8504832.0,
+        "saldo_setelahnya": 194889796.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-905134"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI DIAN NAJMUDIN REF-305513",
+        "tipe": "DB",
+        "jumlah": 4743248.0,
+        "saldo_setelahnya": 190146548.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-305513"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI KOKO MANSUR REF-680102",
+        "tipe": "DB",
+        "jumlah": 5639238.0,
+        "saldo_setelahnya": 184507310.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-680102"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI KH. NYOMAN SAEFULLAH, S.PD REF-180884",
+        "tipe": "DB",
+        "jumlah": 5355714.0,
+        "saldo_setelahnya": 179151596.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-180884"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI IR. HAMZAH SIRAIT, S.PSI REF-874233",
+        "tipe": "DB",
+        "jumlah": 4600454.0,
+        "saldo_setelahnya": 174551142.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-874233"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI OSKAR NOVITASARI, S.PD REF-718372",
+        "tipe": "DB",
+        "jumlah": 3607546.0,
+        "saldo_setelahnya": 170943596.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-718372"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI DRG. ZIZI MANULLANG REF-734226",
+        "tipe": "DB",
+        "jumlah": 5655548.0,
+        "saldo_setelahnya": 165288048.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-734226"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI KARIMAH ADRIANSYAH REF-307038",
+        "tipe": "DB",
+        "jumlah": 8562395.0,
+        "saldo_setelahnya": 156725653.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-307038"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI R.M. OMAN LATUPONO REF-755524",
+        "tipe": "DB",
+        "jumlah": 7379006.0,
+        "saldo_setelahnya": 149346647.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-755524"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI SUTAN DARU PUSPITA, M.KOM. REF-210325",
+        "tipe": "DB",
+        "jumlah": 8392785.0,
+        "saldo_setelahnya": 140953862.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-210325"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI RAIHAN YOLANDA REF-351246",
+        "tipe": "DB",
+        "jumlah": 6751617.0,
+        "saldo_setelahnya": 134202245.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-351246"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TF GAJI ADINATA WULANDARI REF-198761",
+        "tipe": "DB",
+        "jumlah": 4716882.0,
+        "saldo_setelahnya": 129485363.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Gaji",
+        "no_referensi": "REF-198761"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TRF DARI SLAMET WAHYUNI MANDIRI REF-310617",
+        "tipe": "CR",
+        "jumlah": 7600513.0,
+        "saldo_setelahnya": 137085876.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-310617"
+    },
+    {
+        "tanggal": "26/07/2026",
+        "keterangan": "TRF DARI TGK. WALUYO MAYASARI, M.AK CIMB REF-641137",
+        "tipe": "CR",
+        "jumlah": 5268376.0,
+        "saldo_setelahnya": 142354252.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-641137"
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "TRF DARI TITIN NUGROHO PERMATA REF-260931",
+        "tipe": "CR",
+        "jumlah": 6516295.0,
+        "saldo_setelahnya": 148240502.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-260931"
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "GrabFood Settlement REF-221934",
+        "tipe": "CR",
+        "jumlah": 6615304.0,
+        "saldo_setelahnya": 141724207.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-221934"
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "Pembelian Mesin Espresso REF-220959",
+        "tipe": "DB",
+        "jumlah": 2932249.0,
+        "saldo_setelahnya": 136787996.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Alat & Mesin",
+        "no_referensi": "REF-220959"
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "Renovasi Area Cafe REF-362326",
+        "tipe": "DB",
+        "jumlah": 1679093.0,
+        "saldo_setelahnya": 135108903.0,
+        "kategori_utama": "Belanja Modal (CAPEX)",
+        "sub_kategori": "Renovasi",
+        "no_referensi": "REF-362326"
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 2634007.0,
+        "saldo_setelahnya": 139720245.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "27/07/2026",
+        "keterangan": "TRF DARI TRI SIRAIT DANAMON REF-936267",
+        "tipe": "CR",
+        "jumlah": 4366985.0,
+        "saldo_setelahnya": 152607487.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-936267"
+    },
+    {
+        "tanggal": "28/07/2026",
+        "keterangan": "Transfer Catering Kopi REF-311024",
+        "tipe": "CR",
+        "jumlah": 4889531.0,
+        "saldo_setelahnya": 157497018.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Catering",
+        "no_referensi": "REF-311024"
+    },
+    {
+        "tanggal": "28/07/2026",
+        "keterangan": "TRF DARI GATRA SAFITRI, M.AK CIMB REF-277205",
+        "tipe": "CR",
+        "jumlah": 782750.0,
+        "saldo_setelahnya": 156160149.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-277205"
+    },
+    {
+        "tanggal": "28/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-371262",
+        "tipe": "DB",
+        "jumlah": 2436895.0,
+        "saldo_setelahnya": 153723254.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-371262"
+    },
+    {
+        "tanggal": "28/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 2119619.0,
+        "saldo_setelahnya": 155377399.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "29/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-960608",
+        "tipe": "CR",
+        "jumlah": 5081759.0,
+        "saldo_setelahnya": 166037957.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-960608"
+    },
+    {
+        "tanggal": "29/07/2026",
+        "keterangan": "PEMBELIAN STOK REF-322060",
+        "tipe": "DB",
+        "jumlah": 599749.0,
+        "saldo_setelahnya": 165438208.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-322060"
+    },
+    {
+        "tanggal": "29/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-352804",
+        "tipe": "CR",
+        "jumlah": 6717644.0,
+        "saldo_setelahnya": 160440898.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-352804"
+    },
+    {
+        "tanggal": "29/07/2026",
+        "keterangan": "TRF DARI HJ. MICHELLE MARPAUNG, S.E.I BRI REF-869144",
+        "tipe": "CR",
+        "jumlah": 515300.0,
+        "saldo_setelahnya": 160956198.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan",
+        "no_referensi": "REF-869144"
+    },
+    {
+        "tanggal": "29/07/2026",
+        "keterangan": "TAGIHAN INTERNET BIZNET",
+        "tipe": "DB",
+        "jumlah": 125923.0,
+        "saldo_setelahnya": 165312285.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": null
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "PEMBAYARAN UTILITAS REF-571697",
+        "tipe": "DB",
+        "jumlah": 2189064.0,
+        "saldo_setelahnya": 172820471.0,
+        "kategori_utama": "Beban Operasional (OPEX)",
+        "sub_kategori": "Utilitas",
+        "no_referensi": "REF-571697"
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "SETTLEMENT TOKOPEDIA REF-427342",
+        "tipe": "CR",
+        "jumlah": 5220059.0,
+        "saldo_setelahnya": 175009535.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-427342"
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "SETTLEMENT GOPAY REF-634304",
+        "tipe": "CR",
+        "jumlah": 1701886.0,
+        "saldo_setelahnya": 169789476.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-634304"
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "SETTLEMENT SHOPEEPAY REF-750504",
+        "tipe": "CR",
+        "jumlah": 2775305.0,
+        "saldo_setelahnya": 168087590.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-750504"
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "Pembelian Biji Kopi REF-353008",
+        "tipe": "DB",
+        "jumlah": 2282409.0,
+        "saldo_setelahnya": 170538062.0,
+        "kategori_utama": "Beban Pokok Penjualan (COGS)",
+        "sub_kategori": "Bahan Baku",
+        "no_referensi": "REF-353008"
+    },
+    {
+        "tanggal": "30/07/2026",
+        "keterangan": "GrabFood Settlement REF-259107",
+        "tipe": "CR",
+        "jumlah": 1846602.0,
+        "saldo_setelahnya": 172384664.0,
+        "kategori_utama": "Pendapatan Operasional",
+        "sub_kategori": "Penjualan Digital",
+        "no_referensi": "REF-259107"
+    }
+]

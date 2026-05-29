@@ -24,13 +24,16 @@ def income_description(base_desc: str) -> str:
 
 
 def expense_description(base_desc: str) -> str:
+    return f"{base_desc} {reference()}"
+
+
+def variable_expense_description(base_desc: str) -> str:
     patterns: List[str] = [
         f"{base_desc} {reference()}",
         f"TF KE {company_name()} {bank_name()} {reference()}",
         f"PEMBELIAN STOK {reference()}",
         f"PEMBAYARAN UTILITAS {reference()}",
-        "TAGIHAN INTERNET BIZNET",
-        "BIAYA ADMIN BULANAN",
     ]
 
     return random.choice(patterns)
+
