@@ -2,7 +2,7 @@ import io
 from google import genai
 from google.genai import types
 from loguru import logger
-from app.schemas.financial import BankStatement
+from backend.app.models.financial import BankStatement
 from app.schemas.file_upload import FileUpload
 
 TEMPERATURE = 0.3

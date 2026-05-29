@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import List
 from enum import Enum
-
+from .financial import FinancialReport
 
 class CompetitorType(str, Enum):
     DIRECT = "Direct"
@@ -47,6 +47,9 @@ class Business(BaseModel):
         ..., description="Jumlah ulasan bisnis di Google Maps"
     )
     location: Location = Field(..., description="Lokasi bisnis")
+    financial_report: List[FinancialReport] | None = Field(
+        None, description="Laporan keuangan bisnis"
+    )
     analysis: list[BussinessAnalysis] | None = Field(
         None, description="Analisis bisnis"
     )
