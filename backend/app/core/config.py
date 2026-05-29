@@ -1,9 +1,9 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
-class GeminiSettings(BaseSettings):
-    API_KEY: str = ""  # Replace with your actual API key
+class GeminiSettings(BaseModel):
+    API_KEY: str = ""  
 
 
 class Settings(BaseSettings):
