@@ -86,7 +86,18 @@ Go to **Settings -> Secrets and variables -> Actions** and add:
 - `GCP_SERVICE_ACCOUNT`
 - `VITE_API_URL` (backend URL + `/api/v1`)
 
-## 8) Cloud Run resource limits (free-tier friendly)
+## 8) Create Artifact Registry repository
+
+The workflows push images to Artifact Registry. Create the repo once:
+
+```bash
+gcloud artifacts repositories create vantage-ai \
+  --repository-format=docker \
+  --location=asia-southeast2 \
+  --project fourth-elixir-495806-e4
+```
+
+## 9) Cloud Run resource limits (free-tier friendly)
 
 ```bash
 # Backend
@@ -110,7 +121,7 @@ gcloud run services update vantage-ai-ui \
   --timeout 60
 ```
 
-## 9) Trigger deployments
+## 10) Trigger deployments
 
 Push to `main` to trigger the GitHub Actions workflows:
 
