@@ -72,7 +72,7 @@ def check_batch_job_status( batch_job_name: str) -> types.BatchJob:
     return batch_job
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # with open("data/output/statement_1d.pdf", "rb") as f:
     #     file_data = f.read()
 
