@@ -12,11 +12,13 @@ class BusinessBase(BaseModel):
     name: str = Field(..., description="Nama bisnis")
     industry: str = Field(..., description="Industri bisnis")
     google_maps_url: str = Field(..., description="URL Google Maps bisnis")
-    google_maps_rating: float = Field(..., description="Rating bisnis di Google Maps")
-    google_maps_number_of_reviews: int = Field(
-        ..., description="Jumlah ulasan bisnis di Google Maps"
+    google_maps_rating: Optional[float] = Field(
+        None, description="Rating bisnis di Google Maps"
     )
-    location: Location = Field(..., description="Lokasi bisnis")
+    google_maps_number_of_reviews: Optional[int] = Field(
+        None, description="Jumlah ulasan bisnis di Google Maps"
+    )
+    location: Optional[Location] = Field(None, description="Lokasi bisnis")
     financial_report: Optional[List[FinancialReport]] = Field(
         None, description="Laporan keuangan bisnis"
     )
@@ -25,8 +27,10 @@ class BusinessBase(BaseModel):
     )
 
 
-class BusinessCreate(BusinessBase):
-    pass
+class BusinessCreate(BaseModel):
+    name: str = Field(..., description="Nama bisnis")
+    industry: str = Field(..., description="Industri bisnis")
+    google_maps_url: str = Field(..., description="URL Google Maps bisnis")
 
 
 class BusinessUpdate(BaseModel):

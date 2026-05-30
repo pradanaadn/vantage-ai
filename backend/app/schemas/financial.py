@@ -50,3 +50,19 @@ class FinancialReportCreateRequest(BaseModel):
     created_at: datetime | None = None
 
 
+class BankStatementUploadRequest(BaseModel):
+    business_id: str
+    file_url: str
+
+
+class BankStatementUploadResponse(BaseModel):
+    file_url: str
+    gs_url: str
+    content_type: str
+    filename: str
+
+
+class BankStatementCategorizeResponse(BaseModel):
+    flow_run_id: str
+
+

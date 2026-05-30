@@ -2,11 +2,12 @@ import io
 from google import genai
 from google.genai import types
 from loguru import logger
+from pydantic import ValidationError
 from backend.app.models.financial import BankStatement
 from app.schemas.file_upload import FileUpload
 
 TEMPERATURE = 0.3
-API_KEY = ""  
+API_KEY = "AIzaSyDQtKjqBxCt_WcBpGK8BErezfqrEY2KE-w"
 
 
 def analyze_and_categorize_statement_batch(
@@ -32,6 +33,10 @@ def analyze_and_categorize_statement_batch(
         logger.error("File upload failed.")
         raise Exception("File upload failed.")
 
+    if uploaded_file.uri is None or uploaded_file.mime_type is None:
+        logger.error("Uploaded file URI or MIME type is missing.")
+        raise Exception("Uploaded file URI or MIME type is missing.")
+
     # 2. Construct the InlinedRequest
     request = types.InlinedRequest(
         contents=[
@@ -54,25 +59,55 @@ def analyze_and_categorize_statement_batch(
             temperature=TEMPERATURE,
         ),
     )
-
-    # 3. Submit the Batch Job
-    batch_job = client.batches.create(
-        model=model_name,
-        src=[request],
-    )
-    logger.info(f"Batch job initiated. Job Name: {batch_job}")
+    try:
+        batch_job = client.batches.create(
+            model=model_name,
+            src=[request],
+        )
+        logger.info(f"Batch job initiated. Job Name: {batch_job}")
+    except Exception as e:
+        logger.error(f"Batch job submission failed: {e}")
+        raise Exception(f"Batch job submission failed: {e}")
 
     return batch_job
 
 
-def check_batch_job_status( batch_job_name: str) -> types.BatchJob:
+def check_batch_job_status(batch_job_name: str) -> types.BatchJob:
     client = genai.Client(api_key=API_KEY)
     batch_job = client.batches.get(name=batch_job_name)
     logger.info(f"Batch job status: {batch_job.state}")
     return batch_job
 
 
-# if __name__ == "__main__":
+def get_bank_statement_from_batch_result(batch_job: types.BatchJob) -> BankStatement:
+    destination = batch_job.dest
+    if destination is None or not destination.inlined_responses:
+         logger.error("Batch job has no inlined responses.")
+         raise ValueError("Batch job has no inlined responses.")
+    response = destination.inlined_responses[0]
+    if response.response is None or not response.response.candidates:
+        logger.error("Batch job response has no candidates.")
+        raise ValueError("Batch job response has no candidates.")
+    content = response.response.candidates[0].content
+    if content is None or not content.parts:
+        logger.error("Batch job response content has no parts.")
+        raise ValueError("Batch job response content has no parts.")
+    text = content.parts[0].text
+    if text is None:
+        logger.error("Batch job response content part has no text.")
+        raise ValueError("Batch job response content part has no text.")
+    try:
+        bank_statement = BankStatement.model_validate_json(text)
+        logger.info("Bank statement extracted and categorized successfully.")
+        return bank_statement
+    except ValidationError as e:
+        logger.error(f"Failed to parse bank statement from batch result: {e}")
+        raise e
+    # if response
+    
+
+
+if __name__ == "__main__":
     # with open("data/output/statement_1d.pdf", "rb") as f:
     #     file_data = f.read()
 
@@ -86,11 +121,14 @@ def check_batch_job_status( batch_job_name: str) -> types.BatchJob:
     #     system_instruction = f.read()
 
     # batch_job = analyze_and_categorize_statement_batch(
-    #     bank_statement, system_instruction
+    #     bank_statement=bank_statement,
+    #     system_instruction=system_instruction.decode("utf-8"),
     # )
-    
+
     # logger.info(f"Batch job submitted successfully. Job Name: {batch_job.name}")
-    # import time
+    # # import time
     # # while True:
-    # job_status = check_batch_job_status(batch_job_name="batches/lxa2scznfe5qak22egrlizkbw4r5lgop0aep")
-    # print(job_status.dest.inlined_responses[0])
+    job_status = check_batch_job_status(batch_job_name="batches/zpdk2xodrz3z65tc0ve92bj8y7vm2vmuydoi")
+    logger.info(f"Batch job status: {job_status}")
+    # print(job_status.dest.inlined_responses[0].response.candidates[0].content.parts[0].text)
+    print(get_bank_statement_from_batch_result(job_status))

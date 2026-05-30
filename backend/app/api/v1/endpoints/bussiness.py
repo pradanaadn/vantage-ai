@@ -1,49 +1,50 @@
-from fastapi import APIRouter, status
-
+from fastapi import APIRouter, HTTPException, status
+from app.schemas.business import BusinessCreate, BusinessInDB, BusinessUpdate
+from app.services import business_service
 
 router = APIRouter()
 
 
-@router.post("/{business_id}")
-def get_business_info(business_id: str):
-    pass
+@router.get("/", response_model=list[BusinessInDB])
+async def list_businesses() -> list[BusinessInDB]:
+	return await business_service.list_businesses()
 
 
-@router.post("/{business_id}/analyze")
-def analyze_bussiness(business_id: str):
-    pass
+@router.get("/{business_id}", response_model=BusinessInDB)
+async def get_business_info(business_id: str) -> BusinessInDB:
+	business = await business_service.get_business(business_id)
+	if not business:
+		raise HTTPException(
+			status_code=status.HTTP_404_NOT_FOUND,
+			detail="Business not found.",
+		)
+	return business
 
 
-@router.get("/{business_id}/analyze")
-def analyze_competitors(business_id: str):
-    pass
+@router.post("/", response_model=BusinessInDB, status_code=status.HTTP_201_CREATED)
+async def create_business(payload: BusinessCreate) -> BusinessInDB:
+	return await business_service.create_business(payload)
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED)
-def create_business():
-    pass
-
-
-@router.put("/{business_id}")
-def update_business(business_id: str):
-    pass
+@router.put("/{business_id}", response_model=BusinessInDB)
+async def update_business(
+	business_id: str,
+	payload: BusinessUpdate,
+) -> BusinessInDB:
+	business = await business_service.update_business(business_id, payload)
+	if not business:
+		raise HTTPException(
+			status_code=status.HTTP_404_NOT_FOUND,
+			detail="Business not found.",
+		)
+	return business
 
 
 @router.delete("/{business_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_business(business_id: str):
-    pass
-
-
-@router.get("/{business_id}/competitors")
-def get_competitors(business_id: str):
-    pass
-
-
-@router.post("/{business_id}/competitors", status_code=status.HTTP_201_CREATED)
-def create_competitor(business_id: str):
-    pass
-
-
-@router.put("/competitors/{competitor_id}")
-def delete_competitor(competitor_id: str):
-    pass
+async def delete_business(business_id: str) -> None:
+	deleted = await business_service.delete_business(business_id)
+	if not deleted:
+		raise HTTPException(
+			status_code=status.HTTP_404_NOT_FOUND,
+			detail="Business not found.",
+		)

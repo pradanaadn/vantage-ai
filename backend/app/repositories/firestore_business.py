@@ -35,7 +35,7 @@ def get_business(business_id: str) -> Optional[BusinessInDB]:
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return None
     payload = doc.to_dict() or {} # type: ignore
-    return BusinessInDB.model_validate({"id": doc.id, **payload})
+    return BusinessInDB.model_validate({"id": doc.id, **payload}) # type: ignore
 
 
 def list_businesses() -> List[BusinessInDB]:
@@ -59,7 +59,7 @@ def update_business(business_id: str, business_data: BusinessUpdate) -> Optional
 
     updated = doc_ref.get()
     payload = updated.to_dict() or {} # pyright: ignore[reportAttributeAccessIssue]
-    return BusinessInDB.model_validate({"id": updated.id, **payload})
+    return BusinessInDB.model_validate({"id": updated.id, **payload}) # type: ignore
 
 
 def delete_business(business_id: str) -> bool:
@@ -115,7 +115,7 @@ def update_competitor(
 
     updated = doc_ref.get()
     payload = updated.to_dict() or {} # pyright: ignore[reportAttributeAccessIssue]
-    return CompetitorInDB.model_validate({"id": updated.id, **payload})
+    return CompetitorInDB.model_validate({"id": updated.id, **payload}) # type: ignore
 
 
 def delete_competitor(competitor_id: str) -> bool:
