@@ -49,43 +49,55 @@ def sample_competitor(sample_location):
 
 
 def test_business_crud(sample_business):
-    created = firestore_business.create_business(sample_business)
+    owner_uid = "user-1"
+    created = firestore_business.create_business(sample_business, owner_uid)
     try:
-        fetched = firestore_business.get_business(created.id)
+        fetched = firestore_business.get_business(created.id, owner_uid)
         assert fetched is not None
         assert fetched.name == sample_business.name
 
         updated = firestore_business.update_business(
-            created.id, BusinessUpdate(name="Toko ABC Updated")
+            created.id,
+            BusinessUpdate(name="Toko ABC Updated"),
+            owner_uid,
         )
         assert updated is not None
         assert updated.name == "Toko ABC Updated"
 
-        all_businesses = firestore_business.list_businesses()
+        all_businesses = firestore_business.list_businesses(owner_uid)
         assert any(b.id == created.id for b in all_businesses)
     finally:
-        firestore_business.delete_business(created.id)
+        firestore_business.delete_business(created.id, owner_uid)
 
 
 def test_competitor_crud(sample_business, sample_competitor):
-    created_business = firestore_business.create_business(sample_business)
+    owner_uid = "user-1"
+    created_business = firestore_business.create_business(sample_business, owner_uid)
     competitor_payload = sample_competitor.model_copy()
     competitor_payload.business_id = created_business.id
 
-    created_competitor = firestore_business.create_competitor(competitor_payload)
+    created_competitor = firestore_business.create_competitor(
+        competitor_payload,
+        owner_uid,
+    )
     try:
-        fetched = firestore_business.get_competitor(created_competitor.id)
+        fetched = firestore_business.get_competitor(created_competitor.id, owner_uid)
         assert fetched is not None
         assert fetched.business_id == created_business.id
 
         updated = firestore_business.update_competitor(
-            created_competitor.id, CompetitorUpdate(name="Toko XYZ Updated")
+            created_competitor.id,
+            CompetitorUpdate(name="Toko XYZ Updated"),
+            owner_uid,
         )
         assert updated is not None
         assert updated.name == "Toko XYZ Updated"
 
-        competitors = firestore_business.list_competitors_by_business(created_business.id)
+        competitors = firestore_business.list_competitors_by_business(
+            created_business.id,
+            owner_uid,
+        )
         assert any(c.id == created_competitor.id for c in competitors)
     finally:
-        firestore_business.delete_competitor(created_competitor.id)
-        firestore_business.delete_business(created_business.id)
+        firestore_business.delete_competitor(created_competitor.id, owner_uid)
+        firestore_business.delete_business(created_business.id, owner_uid)

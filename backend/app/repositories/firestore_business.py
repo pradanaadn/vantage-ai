@@ -22,24 +22,41 @@ def _db():
     return firestore.client()
 
 
-def create_business(business_data: BusinessCreate) -> BusinessInDB:
+def create_business(business_data: BusinessCreate, owner_uid: str) -> BusinessInDB:
     doc_ref = _db().collection(BUSINESSES_COLLECTION).document()
     payload = business_data.model_dump(exclude_none=True)
+    payload["owner_uid"] = owner_uid
     doc_ref.set(payload)
     return BusinessInDB.model_validate({"id": doc_ref.id, **payload})
 
 
-def get_business(business_id: str) -> Optional[BusinessInDB]:
+def get_business(business_id: str, owner_uid: str) -> Optional[BusinessInDB]:
     doc_ref = _db().collection(BUSINESSES_COLLECTION).document(business_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return None
     payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Business does not belong to the user")
     return BusinessInDB.model_validate({"id": doc.id, **payload}) # type: ignore
 
 
-def list_businesses() -> List[BusinessInDB]:
-    docs = _db().collection(BUSINESSES_COLLECTION).stream()
+def get_business_owner_uid(business_id: str) -> Optional[str]:
+    doc_ref = _db().collection(BUSINESSES_COLLECTION).document(business_id)
+    doc = doc_ref.get()
+    if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
+        return None
+    payload = doc.to_dict() or {} # type: ignore
+    return payload.get("owner_uid")
+
+
+def list_businesses(owner_uid: str) -> List[BusinessInDB]:
+    docs = (
+        _db()
+        .collection(BUSINESSES_COLLECTION)
+        .where(filter=FieldFilter("owner_uid", "==", owner_uid))
+        .stream()
+    )
     results: List[BusinessInDB] = []
     for doc in docs:
         payload = doc.to_dict() or {}
@@ -47,11 +64,18 @@ def list_businesses() -> List[BusinessInDB]:
     return results
 
 
-def update_business(business_id: str, business_data: BusinessUpdate) -> Optional[BusinessInDB]:
+def update_business(
+    business_id: str,
+    business_data: BusinessUpdate,
+    owner_uid: str,
+) -> Optional[BusinessInDB]:
     doc_ref = _db().collection(BUSINESSES_COLLECTION).document(business_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return None
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Business does not belong to the user")
 
     update_payload = business_data.model_dump(exclude_none=True)
     if update_payload:
@@ -62,36 +86,49 @@ def update_business(business_id: str, business_data: BusinessUpdate) -> Optional
     return BusinessInDB.model_validate({"id": updated.id, **payload}) # type: ignore
 
 
-def delete_business(business_id: str) -> bool:
+def delete_business(business_id: str, owner_uid: str) -> bool:
     doc_ref = _db().collection(BUSINESSES_COLLECTION).document(business_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return False
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Business does not belong to the user")
     doc_ref.delete()
     return True
 
 
-def create_competitor(competitor_data: CompetitorCreate) -> CompetitorInDB:
+def create_competitor(
+    competitor_data: CompetitorCreate,
+    owner_uid: str,
+) -> CompetitorInDB:
     doc_ref = _db().collection(COMPETITORS_COLLECTION).document()
     payload = competitor_data.model_dump(exclude_none=True)
+    payload["owner_uid"] = owner_uid
     doc_ref.set(payload)
     return CompetitorInDB.model_validate({"id": doc_ref.id, **payload})
 
 
-def get_competitor(competitor_id: str) -> Optional[CompetitorInDB]:
+def get_competitor(competitor_id: str, owner_uid: str) -> Optional[CompetitorInDB]:
     doc_ref = _db().collection(COMPETITORS_COLLECTION).document(competitor_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return None
     payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Competitor does not belong to the user")
     return CompetitorInDB.model_validate({"id": doc.id, **payload}) # pyright: ignore[reportAttributeAccessIssue]
 
 
-def list_competitors_by_business(business_id: str) -> List[CompetitorInDB]:
+def list_competitors_by_business(
+    business_id: str,
+    owner_uid: str,
+) -> List[CompetitorInDB]:
     docs = (
         _db()
         .collection(COMPETITORS_COLLECTION)
         .where(filter=FieldFilter("business_id", "==", business_id))
+        .where(filter=FieldFilter("owner_uid", "==", owner_uid))
         .stream()
     )
     results: List[CompetitorInDB] = []
@@ -102,12 +139,17 @@ def list_competitors_by_business(business_id: str) -> List[CompetitorInDB]:
 
 
 def update_competitor(
-    competitor_id: str, competitor_data: CompetitorUpdate
+    competitor_id: str,
+    competitor_data: CompetitorUpdate,
+    owner_uid: str,
 ) -> Optional[CompetitorInDB]:
     doc_ref = _db().collection(COMPETITORS_COLLECTION).document(competitor_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return None
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Competitor does not belong to the user")
 
     update_payload = competitor_data.model_dump(exclude_none=True)
     if update_payload:
@@ -118,10 +160,13 @@ def update_competitor(
     return CompetitorInDB.model_validate({"id": updated.id, **payload}) # type: ignore
 
 
-def delete_competitor(competitor_id: str) -> bool:
+def delete_competitor(competitor_id: str, owner_uid: str) -> bool:
     doc_ref = _db().collection(COMPETITORS_COLLECTION).document(competitor_id)
     doc = doc_ref.get()
     if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
         return False
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Competitor does not belong to the user")
     doc_ref.delete()
     return True

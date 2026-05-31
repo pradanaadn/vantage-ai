@@ -12,7 +12,7 @@ from prefect.deployments import run_deployment
 
 from app.infra.firebase import initialize_firebase
 from app.models.financial import FinancialReport
-from app.repositories import firestore_financial
+from app.repositories import firestore_business, firestore_financial
 from app.schemas.file_upload import FileUpload
 from app.schemas.financial import FinancialReportCreate
 from app.services.bank_statement_categorize import (
@@ -89,6 +89,13 @@ def check_batch_result(
     bussiness_id: str,
 ) -> FinancialReport | None:
     initialize_firebase()
+    owner_uid = firestore_business.get_business_owner_uid(bussiness_id)
+    if not owner_uid:
+        logger.error(
+            "Missing business owner for financial report creation: %s",
+            bussiness_id,
+        )
+        return None
     batch_job = check_batch_job_status(batch_job_name)
     if batch_job.state == types.JobState.JOB_STATE_SUCCEEDED:
         bank_statement_data = get_bank_statement_from_batch_result(batch_job)
@@ -111,7 +118,7 @@ def check_batch_result(
             generated_at=generated_at,
             created_at=created_at,
         )
-        firestore_financial.create_financial_report(report_payload)
+        firestore_financial.create_financial_report(report_payload, owner_uid)
         return financial_report
 
     if batch_job.state == types.JobState.JOB_STATE_FAILED:

@@ -21,6 +21,7 @@ class BankStatementInDB(BaseModel):
     id: str
     business_id: str
     statement: BankStatement
+    owner_uid: str
 
 
 class FinancialReportCreate(BaseModel):
@@ -40,6 +41,7 @@ class FinancialReportUpdate(BaseModel):
 
 class FinancialReportInDB(FinancialReportCreate):
     id: str
+    owner_uid: str
 
 
 class FinancialReportCreateRequest(BaseModel):

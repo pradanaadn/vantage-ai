@@ -1,22 +1,42 @@
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile, status
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, status
+from app.api.deps import get_current_user
+from app.schemas.auth import UserInfo
 from app.schemas.financial import (
     BankStatementCategorizeResponse,
     BankStatementUploadRequest,
     BankStatementUploadResponse,
     FinancialReportInDB,
 )
+from app.services import business_service
 from app.services import financial_service
 from firebase_admin import storage
 from uuid import uuid4
 from prefect.deployments import arun_deployment
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
+
+
+async def _ensure_business_owner(business_id: str, owner_uid: str) -> None:
+    try:
+        business = await business_service.get_business(business_id, owner_uid)
+    except PermissionError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Forbidden",
+        )
+    if not business:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Business not found.",
+        )
 
 
 @router.post("/bank-statement/extract", status_code=status.HTTP_201_CREATED)
 async def extract_and_categorize_bank_statement(
     payload: BankStatementUploadRequest,
+    current_user: UserInfo = Depends(get_current_user),
 ) -> BankStatementCategorizeResponse:
+    await _ensure_business_owner(payload.business_id, current_user.uid)
     flow_run = await arun_deployment(
         "categorize-bank-statement",
         parameters={
@@ -39,7 +59,9 @@ async def extract_and_categorize_bank_statement(
 @router.post("/bank-statement/test", status_code=status.HTTP_201_CREATED)
 async def test(
     payload: BankStatementUploadRequest,
+    current_user: UserInfo = Depends(get_current_user),
 ) -> BankStatementCategorizeResponse:
+    await _ensure_business_owner(payload.business_id, current_user.uid)
     flow_run = await arun_deployment(
         "test-categorize-bank-statement/test-categorize-bank-statement",
         parameters={
@@ -66,7 +88,9 @@ async def test(
 async def upload_bank_statement_file(
     business_id: str = Form(...),
     file: UploadFile = File(...),
+    current_user: UserInfo = Depends(get_current_user),
 ) -> BankStatementUploadResponse:
+    await _ensure_business_owner(business_id, current_user.uid)
     if file.content_type not in ["application/pdf"]:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -95,5 +119,12 @@ async def upload_bank_statement_file(
 
 
 @router.get("/bank-statement", status_code=status.HTTP_200_OK)
-async def get_financial_summary(business_id: str) -> list[FinancialReportInDB]:
-    return await financial_service.list_financial_reports_by_business(business_id)
+async def get_financial_summary(
+    business_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> list[FinancialReportInDB]:
+    await _ensure_business_owner(business_id, current_user.uid)
+    return await financial_service.list_financial_reports_by_business(
+        business_id,
+        current_user.uid,
+    )

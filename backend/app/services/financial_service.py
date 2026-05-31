@@ -20,28 +20,40 @@ from app.schemas.financial import (
 )
 
 
-async def create_bank_statement(statement_data: BankStatementCreate) -> BankStatementInDB:
+async def create_bank_statement(
+    statement_data: BankStatementCreate,
+    owner_uid: str,
+) -> BankStatementInDB:
     try:
         logger.info("Creating bank statement")
-        return firestore_financial.create_bank_statement(statement_data)
+        return firestore_financial.create_bank_statement(statement_data, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while creating bank statement: {e}")
         raise
 
 
-async def get_bank_statement(statement_id: str) -> BankStatementInDB | None:
+async def get_bank_statement(
+    statement_id: str,
+    owner_uid: str,
+) -> BankStatementInDB | None:
     try:
         logger.info(f"Fetching bank statement {statement_id}")
-        return firestore_financial.get_bank_statement(statement_id)
+        return firestore_financial.get_bank_statement(statement_id, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while fetching bank statement {statement_id}: {e}")
         raise
 
 
-async def list_bank_statements_by_business(business_id: str) -> List[BankStatementInDB]:
+async def list_bank_statements_by_business(
+    business_id: str,
+    owner_uid: str,
+) -> List[BankStatementInDB]:
     try:
         logger.info(f"Listing bank statements for business {business_id}")
-        return firestore_financial.list_bank_statements_by_business(business_id)
+        return firestore_financial.list_bank_statements_by_business(
+            business_id,
+            owner_uid,
+        )
     except GoogleAPIError as e:
         logger.error(
             f"Firestore error while listing bank statements for business {business_id}: {e}"
@@ -50,26 +62,35 @@ async def list_bank_statements_by_business(business_id: str) -> List[BankStateme
 
 
 async def update_bank_statement(
-    statement_id: str, statement_data: BankStatementUpdate
+    statement_id: str,
+    statement_data: BankStatementUpdate,
+    owner_uid: str,
 ) -> BankStatementInDB | None:
     try:
         logger.info(f"Updating bank statement {statement_id}")
-        return firestore_financial.update_bank_statement(statement_id, statement_data)
+        return firestore_financial.update_bank_statement(
+            statement_id,
+            statement_data,
+            owner_uid,
+        )
     except GoogleAPIError as e:
         logger.error(f"Firestore error while updating bank statement {statement_id}: {e}")
         raise
 
 
-async def delete_bank_statement(statement_id: str) -> bool:
+async def delete_bank_statement(statement_id: str, owner_uid: str) -> bool:
     try:
         logger.info(f"Deleting bank statement {statement_id}")
-        return firestore_financial.delete_bank_statement(statement_id)
+        return firestore_financial.delete_bank_statement(statement_id, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while deleting bank statement {statement_id}: {e}")
         raise
 
 
-async def create_financial_report(request: FinancialReportCreateRequest) -> FinancialReportInDB:
+async def create_financial_report(
+    request: FinancialReportCreateRequest,
+    owner_uid: str,
+) -> FinancialReportInDB:
     try:
         logger.info("Uploading financial report file")
         bucket = storage.bucket()
@@ -88,25 +109,34 @@ async def create_financial_report(request: FinancialReportCreateRequest) -> Fina
             generated_at=request.generated_at or now,
             created_at=request.created_at or now,
         )
-        return firestore_financial.create_financial_report(report_payload)
+        return firestore_financial.create_financial_report(report_payload, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while creating financial report: {e}")
         raise
 
 
-async def get_financial_report(report_id: str) -> FinancialReportInDB | None:
+async def get_financial_report(
+    report_id: str,
+    owner_uid: str,
+) -> FinancialReportInDB | None:
     try:
         logger.info(f"Fetching financial report {report_id}")
-        return firestore_financial.get_financial_report(report_id)
+        return firestore_financial.get_financial_report(report_id, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while fetching financial report {report_id}: {e}")
         raise
 
 
-async def list_financial_reports_by_business(business_id: str) -> List[FinancialReportInDB]:
+async def list_financial_reports_by_business(
+    business_id: str,
+    owner_uid: str,
+) -> List[FinancialReportInDB]:
     try:
         logger.info(f"Listing financial reports for business {business_id}")
-        return firestore_financial.list_financial_reports_by_business(business_id)
+        return firestore_financial.list_financial_reports_by_business(
+            business_id,
+            owner_uid,
+        )
     except GoogleAPIError as e:
         logger.error(
             f"Firestore error while listing financial reports for business {business_id}: {e}"
@@ -115,20 +145,26 @@ async def list_financial_reports_by_business(business_id: str) -> List[Financial
 
 
 async def update_financial_report(
-    report_id: str, report_data: FinancialReportUpdate
+    report_id: str,
+    report_data: FinancialReportUpdate,
+    owner_uid: str,
 ) -> FinancialReportInDB | None:
     try:
         logger.info(f"Updating financial report {report_id}")
-        return firestore_financial.update_financial_report(report_id, report_data)
+        return firestore_financial.update_financial_report(
+            report_id,
+            report_data,
+            owner_uid,
+        )
     except GoogleAPIError as e:
         logger.error(f"Firestore error while updating financial report {report_id}: {e}")
         raise
 
 
-async def delete_financial_report(report_id: str) -> bool:
+async def delete_financial_report(report_id: str, owner_uid: str) -> bool:
     try:
         logger.info(f"Deleting financial report {report_id}")
-        return firestore_financial.delete_financial_report(report_id)
+        return firestore_financial.delete_financial_report(report_id, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while deleting financial report {report_id}: {e}")
         raise

@@ -64,15 +64,22 @@ def _sample_statement():
 
 
 def test_bank_statement_crud(sample_business):
-    created_business = firestore_business.create_business(sample_business)
+    owner_uid = "user-1"
+    created_business = firestore_business.create_business(sample_business, owner_uid)
     statement_payload = BankStatementCreate(
         business_id=created_business.id,
         statement=_sample_statement(),
     )
 
-    created_statement = firestore_financial.create_bank_statement(statement_payload)
+    created_statement = firestore_financial.create_bank_statement(
+        statement_payload,
+        owner_uid,
+    )
     try:
-        fetched = firestore_financial.get_bank_statement(created_statement.id)
+        fetched = firestore_financial.get_bank_statement(
+            created_statement.id,
+            owner_uid,
+        )
         assert fetched is not None
         assert fetched.business_id == created_business.id
 
@@ -80,20 +87,26 @@ def test_bank_statement_crud(sample_business):
         updated_statement.final_balance = 200000.0
 
         updated = firestore_financial.update_bank_statement(
-            created_statement.id, BankStatementUpdate(statement=updated_statement)
+            created_statement.id,
+            BankStatementUpdate(statement=updated_statement),
+            owner_uid,
         )
         assert updated is not None
         assert updated.statement.final_balance == 200000.0
 
-        statements = firestore_financial.list_bank_statements_by_business(created_business.id)
+        statements = firestore_financial.list_bank_statements_by_business(
+            created_business.id,
+            owner_uid,
+        )
         assert any(s.id == created_statement.id for s in statements)
     finally:
-        firestore_financial.delete_bank_statement(created_statement.id)
-        firestore_business.delete_business(created_business.id)
+        firestore_financial.delete_bank_statement(created_statement.id, owner_uid)
+        firestore_business.delete_business(created_business.id, owner_uid)
 
 
 def test_financial_report_crud(sample_business):
-    created_business = firestore_business.create_business(sample_business)
+    owner_uid = "user-1"
+    created_business = firestore_business.create_business(sample_business, owner_uid)
     report_payload = FinancialReportCreate(
         business_id=created_business.id,
         file_url="https://storage.example.com/report.pdf",
@@ -102,20 +115,33 @@ def test_financial_report_crud(sample_business):
         created_at=datetime.now(timezone.utc),
     )
 
-    created_report = firestore_financial.create_financial_report(report_payload)
+    created_report = firestore_financial.create_financial_report(
+        report_payload,
+        owner_uid,
+    )
     try:
-        fetched = firestore_financial.get_financial_report(created_report.id)
+        fetched = firestore_financial.get_financial_report(
+            created_report.id,
+            owner_uid,
+        )
         assert fetched is not None
         assert fetched.business_id == created_business.id
 
         updated_report = firestore_financial.update_financial_report(
-            created_report.id, FinancialReportUpdate(file_url="https://storage.example.com/updated.pdf")
+            created_report.id,
+            FinancialReportUpdate(
+                file_url="https://storage.example.com/updated.pdf"
+            ),
+            owner_uid,
         )
         assert updated_report is not None
         assert updated_report.file_url.endswith("updated.pdf")
 
-        reports = firestore_financial.list_financial_reports_by_business(created_business.id)
+        reports = firestore_financial.list_financial_reports_by_business(
+            created_business.id,
+            owner_uid,
+        )
         assert any(r.id == created_report.id for r in reports)
     finally:
-        firestore_financial.delete_financial_report(created_report.id)
-        firestore_business.delete_business(created_business.id)
+        firestore_financial.delete_financial_report(created_report.id, owner_uid)
+        firestore_business.delete_business(created_business.id, owner_uid)

@@ -22,6 +22,7 @@ def sample_location():
 
 @pytest.mark.asyncio
 async def test_create_business_service(sample_location):
+    owner_uid = "user-1"
     payload = BusinessCreate(
         name="Toko ABC",
         industry="Retail",
@@ -33,14 +34,19 @@ async def test_create_business_service(sample_location):
         financial_report=None,
     )
     with patch("app.repositories.firestore_business.create_business") as mock_create:
-        mock_create.return_value = BusinessInDB(id="biz-1", **payload.model_dump())
-        created = await business_service.create_business(payload)
+        mock_create.return_value = BusinessInDB(
+            id="biz-1",
+            owner_uid=owner_uid,
+            **payload.model_dump(),
+        )
+        created = await business_service.create_business(payload, owner_uid)
         assert created.id == "biz-1"
         assert created.name == payload.name
 
 
 @pytest.mark.asyncio
 async def test_create_competitor_service(sample_location):
+    owner_uid = "user-1"
     payload = CompetitorCreate(
         business_id="biz-1",
         analysis_date=datetime.now(timezone.utc),
@@ -53,7 +59,11 @@ async def test_create_competitor_service(sample_location):
         location=sample_location,
     )
     with patch("app.repositories.firestore_business.create_competitor") as mock_create:
-        mock_create.return_value = CompetitorInDB(id="comp-1", **payload.model_dump())
-        created = await business_service.create_competitor(payload)
+        mock_create.return_value = CompetitorInDB(
+            id="comp-1",
+            owner_uid=owner_uid,
+            **payload.model_dump(),
+        )
+        created = await business_service.create_competitor(payload, owner_uid)
         assert created.id == "comp-1"
         assert created.business_id == "biz-1"

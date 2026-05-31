@@ -46,6 +46,7 @@ class BusinessUpdate(BaseModel):
 
 class BusinessInDB(BusinessBase):
     id: str
+    owner_uid: str
 
 
 class CompetitorBase(BaseModel):
@@ -85,3 +86,4 @@ class CompetitorUpdate(BaseModel):
 class CompetitorInDB(CompetitorBase):
     id: str
     business_id: str
+    owner_uid: str
