@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     # API Settings
     API_V1_STR: str = "/api/v1"
     BACKEND_CORS_ORIGINS: list[str] = ["*"]
+    MAX_FILE_SIZE: int = 10 * 1024 * 1024
 
     # Emulator Hosts
     FIRESTORE_EMULATOR_HOST: str = "127.0.0.1:8080"

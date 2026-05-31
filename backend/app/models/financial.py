@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 
 class TransactionType(str, Enum):
@@ -19,6 +19,14 @@ class TransactionCategory(str, Enum):
     BEBAN_NON_OPERASIONAL = "Beban Non-Operasional"
     OUTFLOW_NON_BEBAN = "Outflow Non-Beban"
     UNCLASSIFIED = "Belum Terklasifikasi"
+
+
+class FinancialHealth(str, Enum):
+    VERY_HEALTHY = "very_healthy"
+    HEALTHY = "healthy"
+    MODERATE = "moderate"
+    AT_RISK = "at_risk"
+    DISTRESSED = "distressed"
 
 
 class Transaction(BaseModel):
@@ -87,3 +95,34 @@ class FinancialReport(BaseModel):
         if self.bank_statement:
             return self.bank_statement.amount_by_category_and_day_date()
         return {}
+
+class FinancialAnalysis(BaseModel):
+    report_id: str = Field(..., description="ID laporan keuangan yang dianalisis")
+    insights: list[str] = Field(..., description="Daftar insight dari analisis laporan keuangan")
+    warnings: list[str] = Field(..., description="Daftar peringatan dari analisis laporan keuangan")
+    health_score: float = Field(...,ge=0, le=100, description="Skor kesehatan keuangan berdasarkan analisis laporan keuangan")
+    health_status: FinancialHealth | None = Field(
+        None,
+        description="Status kesehatan keuangan berdasarkan analisis laporan keuangan",
+    )
+    recommendations: list[str] = Field(..., description="Daftar rekomendasi berdasarkan analisis laporan keuangan")
+
+    @model_validator(mode="after")
+    def validate_health_status(self) -> "FinancialAnalysis":
+        expected = _status_from_score(self.health_score)
+        self.health_status = expected
+        return self
+
+
+def _status_from_score(score: float) -> FinancialHealth:
+    if score >= 80:
+        return FinancialHealth.VERY_HEALTHY
+    if score >= 70:
+        return FinancialHealth.HEALTHY
+    if score >= 60:
+        return FinancialHealth.MODERATE
+    if score >= 40:
+        return FinancialHealth.AT_RISK
+    return FinancialHealth.DISTRESSED
+    
+    

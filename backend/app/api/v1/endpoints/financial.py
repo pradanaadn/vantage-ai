@@ -12,6 +12,7 @@ from app.services import financial_service
 from firebase_admin import storage
 from uuid import uuid4
 from prefect.deployments import arun_deployment
+from app.core.config import settings
 
 router = APIRouter(dependencies=[Depends(get_current_user)])
 
@@ -55,6 +56,7 @@ async def extract_and_categorize_bank_statement(
             detail="Flow run did not return a valid ID.",
         )
     return BankStatementCategorizeResponse(flow_run_id=str(flow_run.id))
+
 
 @router.post("/bank-statement/test", status_code=status.HTTP_201_CREATED)
 async def test(
@@ -101,10 +103,11 @@ async def upload_bank_statement_file(
     blob_name = f"bank_statements/{business_id}/{uuid4().hex}_{file.filename}"
     blob = bucket.blob(blob_name)
     content = await file.read()
-    if len(content) > 10 * 1024 * 1024:
+    if len(content) > settings.MAX_FILE_SIZE:
+        max_mb = settings.MAX_FILE_SIZE // (1024 * 1024)
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="File size exceeds the maximum limit of 10MB.",
+            detail=f"File size exceeds the maximum limit of {max_mb}MB.",
         )
     blob.upload_from_string(
         content,
