@@ -19,41 +19,41 @@ function formatCurrency(val: number) {
 
 // Map health status to nice descriptive labels and badge colors
 const healthMeta = computed(() => {
-  if (!financialStore.analysis) return { label: 'Unknown', color: 'bg-slate-100 text-slate-700', border: 'border-slate-200' };
+  if (!financialStore.analysis) return { label: 'Tidak Diketahui', color: 'bg-slate-100 text-slate-800 border-slate-350', border: 'border-slate-350' };
   
   switch (financialStore.analysis.health_status) {
     case FinancialHealth.VERY_HEALTHY:
       return { 
         label: 'Sangat Sehat', 
-        color: 'bg-emerald-50 text-emerald-700 border-emerald-200', 
+        color: 'bg-emerald-50/80 text-emerald-900 border-emerald-300/70', 
         gaugeColor: '#10b981',
         desc: 'Bisnis memiliki fondasi likuiditas prima dan margin kontribusi sangat kuat.'
       };
     case FinancialHealth.HEALTHY:
       return { 
         label: 'Sehat', 
-        color: 'bg-green-50 text-green-700 border-green-200', 
+        color: 'bg-green-50/80 text-green-900 border-green-300/70', 
         gaugeColor: '#22c55e',
         desc: 'Arus kas stabil dengan perputaran piutang yang lancar.'
       };
     case FinancialHealth.MODERATE:
       return { 
         label: 'Cukup Sehat', 
-        color: 'bg-amber-50 text-amber-700 border-amber-200', 
+        color: 'bg-amber-50/80 text-amber-900 border-amber-300/70', 
         gaugeColor: '#f59e0b',
         desc: 'Kondisi kas cukup, namun perlu waspada pada tren peningkatan biaya tetap (OPEX).'
       };
     case FinancialHealth.AT_RISK:
       return { 
         label: 'Beresiko', 
-        color: 'bg-orange-50 text-orange-700 border-orange-200', 
+        color: 'bg-orange-50/80 text-orange-900 border-orange-300/70', 
         gaugeColor: '#f97316',
         desc: 'Arus kas ketat. Beban operasional menyerap sebagian besar surplus pemasukan.'
       };
     case FinancialHealth.DISTRESSED:
       return { 
         label: 'Kritis', 
-        color: 'bg-rose-50 text-rose-700 border-rose-200', 
+        color: 'bg-rose-50/80 text-rose-900 border-rose-300/70', 
         gaugeColor: '#ef4444',
         desc: 'Kas defisit. Segera lakukan restrukturisasi biaya pokok (COGS) dan opex mendesak.'
       };
@@ -109,64 +109,72 @@ const gaugeDashoffset = computed(() => {
     </div>
 
     <!-- Active State: Financial Reports Dashboard -->
-    <div v-else class="space-y-8">
+    <div v-else class="space-y-8 pb-16">
       
       <!-- Financial Overview Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 font-sans items-stretch">
         <!-- Kas Akhir Card -->
-        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden">
+        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden h-full flex flex-col justify-between">
           <div class="absolute right-3 top-3 w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
             <Wallet class="w-5 h-5" />
           </div>
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Saldo Akhir Kas</span>
-          <p class="text-xl font-black mt-2 font-mono text-emerald-600">
-            {{ formatCurrency(financialStore.activeReport?.bank_statement.final_balance || 0) }}
-          </p>
-          <div class="text-[10px] text-slate-450 font-bold mt-2 flex items-center gap-1 font-mono">
+          <div>
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Saldo Akhir Kas</span>
+            <p class="text-xl font-black mt-2 font-mono text-emerald-600">
+              {{ formatCurrency(financialStore.activeReport?.bank_statement.final_balance || 0) }}
+            </p>
+          </div>
+          <div class="text-[10px] text-slate-500 font-bold mt-2.5 flex items-center gap-1 font-mono">
             No. Rek: {{ financialStore.activeReport?.bank_statement.account_number }}
           </div>
         </div>
 
         <!-- Total Masuk Card -->
-        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden">
+        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden h-full flex flex-col justify-between">
           <div class="absolute right-3 top-3 w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
             <TrendingUp class="w-5 h-5" />
           </div>
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Pemasukan</span>
-          <p class="text-xl font-black mt-2 font-mono text-emerald-600">
-            {{ formatCurrency(financialStore.totalInflow) }}
-          </p>
-          <div class="text-[10px] text-emerald-700 font-black mt-2 inline-flex items-center gap-0.5 bg-emerald-50 border border-emerald-100/50 px-1.5 py-0.5 rounded-md">
-            Cash Inflow +
+          <div>
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Pemasukan</span>
+            <p class="text-xl font-black mt-2 font-mono text-emerald-600">
+              {{ formatCurrency(financialStore.totalInflow) }}
+            </p>
+          </div>
+          <div class="text-[10px] text-emerald-900 font-black mt-2.5 inline-flex items-center gap-0.5 bg-emerald-50/80 border border-emerald-200/60 px-2 py-1 rounded-md self-start">
+            Arus Masuk (+)
           </div>
         </div>
 
         <!-- Total Keluar Card -->
-        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden">
+        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden h-full flex flex-col justify-between">
           <div class="absolute right-3 top-3 w-10 h-10 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center">
             <TrendingDown class="w-5 h-5" />
           </div>
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Pengeluaran</span>
-          <p class="text-xl font-black mt-2 font-mono text-rose-600">
-            {{ formatCurrency(financialStore.totalOutflow) }}
-          </p>
-          <div class="text-[10px] text-rose-700 font-black mt-2 inline-flex items-center gap-0.5 bg-rose-50 border border-rose-100/50 px-1.5 py-0.5 rounded-md">
-            Cash Outflow -
+          <div>
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Total Pengeluaran</span>
+            <p class="text-xl font-black mt-2 font-mono text-rose-600">
+              {{ formatCurrency(financialStore.totalOutflow) }}
+            </p>
+          </div>
+          <div class="text-[10px] text-rose-900 font-black mt-2.5 inline-flex items-center gap-0.5 bg-rose-50/80 border border-rose-200/60 px-2 py-1 rounded-md self-start">
+            Arus Keluar (-)
           </div>
         </div>
 
         <!-- Arus Kas Bersih Card -->
-        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden">
+        <div class="bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md relative overflow-hidden h-full flex flex-col justify-between">
           <div class="absolute right-3 top-3 w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
             <ArrowRightLeft class="w-5 h-5" />
           </div>
-          <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Arus Kas Bersih</span>
-          <p :class="['text-xl font-black mt-2 font-mono', financialStore.netCashFlow >= 0 ? 'text-emerald-600' : 'text-rose-600']">
-            {{ formatCurrency(financialStore.netCashFlow) }}
-          </p>
-          <div class="text-[10px] font-bold mt-2">
-            <span v-if="financialStore.netCashFlow >= 0" class="text-emerald-700 font-black bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-100/50">Surplus Kas</span>
-            <span v-else class="text-rose-700 font-black bg-rose-50 px-1.5 py-0.5 rounded-md border border-rose-100/50">Defisit Kas</span>
+          <div>
+            <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Arus Kas Bersih</span>
+            <p :class="['text-xl font-black mt-2 font-mono', financialStore.netCashFlow >= 0 ? 'text-emerald-600' : 'text-rose-600']">
+              {{ formatCurrency(financialStore.netCashFlow) }}
+            </p>
+          </div>
+          <div class="text-[10px] font-bold mt-2.5 flex">
+            <span v-if="financialStore.netCashFlow >= 0" class="text-emerald-900 font-black bg-emerald-50/80 px-2 py-1 rounded-md border border-emerald-200/60">Surplus Kas</span>
+            <span v-else class="text-rose-900 font-black bg-rose-50/80 px-2 py-1 rounded-md border border-rose-200/60">Defisit Kas</span>
           </div>
         </div>
       </div>
@@ -175,10 +183,10 @@ const gaugeDashoffset = computed(() => {
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- SVG Gauge Chart card (takes 4 cols) -->
-        <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md flex flex-col items-center text-center">
+        <div class="lg:col-span-4 bg-white rounded-3xl border border-slate-200/60 p-6 shadow-md flex flex-col items-center text-center animate-fade-in">
           <div class="self-start select-none">
             <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Metrik Kesehatan</span>
-            <h3 class="text-base font-black text-slate-800 mt-0.5">Financial Health Score</h3>
+            <h3 class="text-base font-black text-slate-850 mt-2 block">Skor Kesehatan Keuangan</h3>
           </div>
 
           <!-- SVG Semi-Circular Gauge Component -->
@@ -206,12 +214,12 @@ const gaugeDashoffset = computed(() => {
               />
             </svg>
             
-            <!-- Floating values inside the gauge core -->
-            <div class="absolute bottom-2 text-center flex flex-col gap-0.5">
+            <!-- Floating values inside the gauge core (Centered within donut arc) -->
+            <div class="absolute bottom-7 text-center flex flex-col gap-1">
               <span class="text-3xl font-black font-mono text-slate-850 tracking-tighter">
                 {{ financialStore.analysis?.health_score.toFixed(1) }}
               </span>
-              <span :class="['badge font-black uppercase text-[9px] tracking-wider px-2.5 py-1.5 border shadow-sm', healthMeta.color]">
+              <span :class="['badge font-black uppercase text-[9px] tracking-wider px-2.5 py-1.5 border shadow-xs', healthMeta.color]">
                 {{ healthMeta.label }}
               </span>
             </div>

@@ -145,7 +145,7 @@ const systemStatus = computed(() => {
 
         <!-- Live HUD metrics tracker (makes sidebar feel rich and not empty!) -->
         <div class="mx-4 my-3 bg-slate-50/75 border border-slate-150/60 rounded-2xl p-4.5 space-y-3">
-          <span class="text-[9px] font-black text-slate-450 uppercase tracking-widest block select-none">Status Telemetri HUD</span>
+          <span class="text-[9px] font-black text-slate-450 uppercase tracking-widest block select-none">MONITORING SISTEM (READ-ONLY)</span>
           <div class="space-y-2.5">
             <div class="flex items-center justify-between text-[11px] font-semibold text-slate-500">
               <span class="flex items-center gap-1.5"><Compass class="w-4 h-4 text-slate-400" /> Map Nodes</span>
@@ -184,7 +184,7 @@ const systemStatus = computed(() => {
       </div>
 
       <!-- Unified profile card footer -->
-      <div class="p-4 border-t border-slate-150 bg-slate-50/50 shrink-0">
+      <div class="px-6 py-5 border-t border-slate-150 bg-slate-50/50 shrink-0">
         <div class="flex items-center justify-between gap-2.5">
           <div class="flex items-center gap-2.5">
             <div class="w-9 h-9 rounded-full ring ring-emerald-100 ring-offset-1 overflow-hidden shrink-0">
@@ -317,7 +317,7 @@ const systemStatus = computed(() => {
     </div>
 
     <!-- MAIN DASHBOARD CONTENT AREA -->
-    <main class="flex-1 min-h-screen p-6 md:p-8 lg:p-10 pt-20 lg:pt-10 relative z-10 max-w-7xl 2xl:max-w-[1440px] lg:ml-72 lg:mr-auto">
+    <main class="flex-1 min-h-screen p-6 md:p-8 lg:p-10 pt-20 lg:pt-10 relative z-10 w-full lg:ml-72">
       
       <!-- Top banner headers dynamically matching active tab -->
       <header class="mb-8 select-none">

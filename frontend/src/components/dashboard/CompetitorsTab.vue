@@ -75,6 +75,25 @@ const displayIdentity = computed(() => {
     isMainBusiness: true
   };
 });
+
+const showDeleteBizModal = ref(false);
+const confirmDeleteBizText = ref('');
+const deleteBizError = ref('');
+
+async function handleConfirmDeleteBusiness() {
+  deleteBizError.value = '';
+  if (confirmDeleteBizText.value !== 'HAPUS BISNIS') {
+    deleteBizError.value = 'Konfirmasi teks salah. Silakan ketik "HAPUS BISNIS" dengan tepat.';
+    return;
+  }
+  try {
+    await businessStore.deleteBusiness();
+    showDeleteBizModal.value = false;
+    confirmDeleteBizText.value = '';
+  } catch (err: any) {
+    deleteBizError.value = err.message || 'Gagal menghapus bisnis.';
+  }
+}
 </script>
 
 <template>
@@ -161,7 +180,7 @@ const displayIdentity = computed(() => {
               <div>
                 <button 
                   v-if="displayIdentity.isMainBusiness" 
-                  @click="businessStore.deleteBusiness" 
+                  @click="showDeleteBizModal = true" 
                   class="btn btn-outline btn-error btn-xs border rounded-lg text-xs font-bold gap-1 px-3"
                 >
                   <Trash2 class="w-3.5 h-3.5" /> Hapus Bisnis
@@ -542,6 +561,49 @@ const displayIdentity = computed(() => {
 
       </div>
 
+    </div>
+
+    <!-- DOUBLE CONFIRMATION DELETE BUSINESS MODAL -->
+    <div v-if="showDeleteBizModal" class="modal modal-open backdrop-blur-sm z-50">
+      <div class="modal-box bg-white border border-slate-200 shadow-2xl rounded-3xl max-w-md font-sans">
+        
+        <div class="text-center space-y-4 mb-6 select-none">
+          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center mx-auto shadow-sm">
+            <AlertTriangle class="w-6 h-6" />
+          </div>
+          <h3 class="text-lg font-black text-slate-800">Hapus Profil Bisnis?</h3>
+          <p class="text-xs text-slate-500 font-bold leading-relaxed">
+            Tindakan ini tidak dapat dibatalkan. Seluruh data registrasi bisnis ini beserta ulasan SWOT, pemetaan pasar geospasial, dan visualisasi radar kompetitor akan dihapus secara permanen.
+          </p>
+        </div>
+
+        <div class="form-control w-full space-y-3">
+          <label class="label">
+            <span class="label-text-alt font-black text-slate-600 text-[10px] uppercase tracking-wider">Ketik <span class="text-rose-600 font-black">HAPUS BISNIS</span> untuk mengonfirmasi</span>
+          </label>
+          <input 
+            type="text" 
+            v-model="confirmDeleteBizText"
+            placeholder="HAPUS BISNIS"
+            class="input input-bordered focus:border-rose-500 focus:ring-1 focus:ring-rose-500 rounded-xl text-center text-xs font-black text-slate-800" 
+          />
+        </div>
+
+        <div v-if="deleteBizError" class="alert alert-error rounded-xl py-2 px-3 text-[10px] font-bold mt-4 flex gap-2">
+          <AlertTriangle class="w-4 h-4 shrink-0" />
+          <span>{{ deleteBizError }}</span>
+        </div>
+
+        <div class="modal-action flex justify-end gap-3 mt-6">
+          <button @click="showDeleteBizModal = false; confirmDeleteBizText = ''; deleteBizError = '';" class="btn btn-ghost rounded-xl text-xs font-extrabold text-slate-500">
+            Batalkan
+          </button>
+          <button @click="handleConfirmDeleteBusiness" class="btn bg-rose-600 hover:bg-rose-700 border-none text-white font-bold rounded-xl text-xs px-6">
+            Hapus Permanen
+          </button>
+        </div>
+
+      </div>
     </div>
 
   </div>

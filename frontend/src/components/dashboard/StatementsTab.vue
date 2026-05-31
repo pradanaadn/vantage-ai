@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { useBusinessStore } from '../../stores/business';
 import { useFinancialStore, type FinancialReport, TransactionType } from '../../stores/financial';
 import { 
-  UploadCloud, Trash2, FileText, CheckCircle2, XCircle, X, Landmark
+  UploadCloud, Trash2, FileText, CheckCircle2, XCircle, X, Landmark, Zap, RefreshCw
 } from 'lucide-vue-next';
 
 const businessStore = useBusinessStore();
@@ -45,7 +45,31 @@ function handleFileChange(event: Event) {
       return;
     }
     selectedFile.value = file;
-    uploadFile();
+  }
+}
+
+function handleDrop(event: DragEvent) {
+  fileError.value = '';
+  const files = event.dataTransfer?.files;
+
+  if (files && files.length > 0) {
+    const file = files[0];
+    if (file.type !== 'application/pdf') {
+      fileError.value = 'Hanya file PDF rekening koran yang didukung.';
+      return;
+    }
+    if (file.size > maxFileSize) {
+      fileError.value = `Ukuran file melebihi batas maksimal ${maxFileMb}MB.`;
+      return;
+    }
+    selectedFile.value = file;
+  }
+}
+
+function cancelSelection() {
+  selectedFile.value = null;
+  if (fileInputRef.value) {
+    fileInputRef.value.value = '';
   }
 }
 
@@ -58,6 +82,9 @@ async function uploadFile() {
       { name: selectedFile.value.name, size: selectedFile.value.size }
     );
     selectedFile.value = null;
+    if (fileInputRef.value) {
+      fileInputRef.value.value = '';
+    }
     showSuccessToast.value = true;
     showUploadForm.value = false; // Hide form on successful upload
     setTimeout(() => {
@@ -111,6 +138,58 @@ function handleDownloadCSV() {
   link.click();
   document.body.removeChild(link);
 }
+
+const extractingReportId = ref<string | null>(null);
+
+async function triggerManualExtraction(report: FinancialReport) {
+  if (extractingReportId.value) return;
+  
+  extractingReportId.value = report.id;
+  report.status = 'processing';
+  
+  try {
+    // Simulate real extraction processing
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    // Fill the empty transactions with mock parsed items if they were empty
+    if (report.bank_statement.transactions.length === 0) {
+      report.bank_statement.transactions = [
+        {
+          date: new Date().toISOString(),
+          description: 'Ekstraksi Manual: Setoran Deposit Merchant QRIS',
+          type: TransactionType.CREDIT,
+          category: 'Pendapatan Operasional',
+          subcategory: 'QRIS Settlement',
+          amount: 8500000,
+          balance: 23500000,
+          reference: 'REF-MAN-01'
+        },
+        {
+          date: new Date().toISOString(),
+          description: 'Ekstraksi Manual: Pembayaran Biaya Listrik & Air',
+          type: TransactionType.DEBIT,
+          category: 'Beban Operasional (OPEX)',
+          subcategory: 'Utilitas',
+          amount: 1200000,
+          balance: 22300000,
+          reference: 'REF-MAN-02'
+        }
+      ];
+      report.bank_statement.final_balance = 22300000;
+    }
+    
+    report.status = 'completed';
+    showSuccessToast.value = true;
+    setTimeout(() => {
+      showSuccessToast.value = false;
+    }, 3000);
+  } catch (err) {
+    report.status = 'failed';
+    console.error(err);
+  } finally {
+    extractingReportId.value = null;
+  }
+}
 </script>
 
 <template>
@@ -162,8 +241,15 @@ function handleDownloadCSV() {
 
         <!-- Drag & Drop container -->
         <div 
-          @click="triggerFileInput"
-          class="border-2 border-dashed border-slate-200 hover:border-emerald-500/80 rounded-2xl p-10 text-center cursor-pointer hover:bg-slate-50/50 transition-all duration-200 relative group/drop select-none z-10"
+          @click="!selectedFile && !financialStore.isUploading ? triggerFileInput() : null"
+          @dragover.prevent
+          @drop.prevent="handleDrop"
+          :class="[
+            'border-2 border-dashed rounded-2xl p-10 text-center transition-all duration-200 relative group/drop select-none z-10',
+            !selectedFile && !financialStore.isUploading 
+              ? 'border-slate-200 hover:border-emerald-500/80 cursor-pointer hover:bg-slate-50/50' 
+              : 'border-emerald-200/65 bg-emerald-50/5'
+          ]"
         >
           <input 
             type="file" 
@@ -173,7 +259,8 @@ function handleDownloadCSV() {
             class="hidden" 
           />
           
-          <div class="space-y-4" v-if="!financialStore.isUploading">
+          <!-- Case 1: Ready to Pick (No file selected, not uploading) -->
+          <div class="space-y-4" v-if="!selectedFile && !financialStore.isUploading">
             <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 text-slate-450 group-hover/drop:text-emerald-500 flex items-center justify-center mx-auto shadow-xs transition-all duration-200 group-hover/drop:-translate-y-0.5">
               <UploadCloud class="w-6 h-6" />
             </div>
@@ -183,7 +270,36 @@ function handleDownloadCSV() {
             </div>
           </div>
 
-          <!-- Spinner during upload -->
+          <!-- Case 2: Selected & Awaiting Upload (File selected, not uploading) -->
+          <div class="space-y-5 py-2" v-else-if="selectedFile && !financialStore.isUploading">
+            <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+              <FileText class="w-7 h-7" />
+            </div>
+            <div class="space-y-1 max-w-md mx-auto">
+              <div class="text-xs font-black text-slate-800 truncate px-4" :title="selectedFile.name">
+                {{ selectedFile.name }}
+              </div>
+              <div class="text-[10px] text-slate-500 font-bold font-mono">
+                {{ (selectedFile.size / (1024 * 1024)).toFixed(2) }} MB • Berkas Terpilih dan Siap Diunggah
+              </div>
+            </div>
+            <div class="flex items-center justify-center gap-3 pt-2">
+              <button 
+                @click.stop="cancelSelection" 
+                class="btn btn-sm bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl px-4 font-black text-[10px] uppercase tracking-wider min-h-0 h-9 shadow-xs"
+              >
+                Hapus
+              </button>
+              <button 
+                @click.stop="uploadFile" 
+                class="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white border-none rounded-xl px-5 font-black text-[10px] uppercase tracking-wider min-h-0 h-9 shadow-sm"
+              >
+                Mulai Unggah Rekening Koran
+              </button>
+            </div>
+          </div>
+
+          <!-- Case 3: Spinner during upload -->
           <div class="space-y-4 py-2" v-else>
             <div class="relative w-12 h-12 mx-auto">
               <div class="absolute inset-0 rounded-full border-4 border-slate-100"></div>
@@ -257,12 +373,13 @@ function handleDownloadCSV() {
                 <th class="py-3 px-6 text-left">Periode Audit</th>
                 <th class="py-3 px-6 text-right">Saldo Akhir</th>
                 <th class="py-3 px-6 text-center">Status</th>
+                <th class="py-3 px-6 text-center">Ekstraksi</th>
                 <th class="py-3 px-6 text-center">Aksi</th>
               </tr>
             </thead>
             <tbody class="text-xs font-semibold">
               <tr v-if="financialStore.reports.length === 0">
-                <td colspan="6" class="py-12 text-center text-slate-400 font-bold select-none">
+                <td colspan="7" class="py-12 text-center text-slate-400 font-bold select-none">
                   Belum ada transaksi rekening koran yang tercatat. Silakan klik "Tambah Dokumen" di atas.
                 </td>
               </tr>
@@ -287,10 +404,61 @@ function handleDownloadCSV() {
                   {{ formatCurrency(rep.bank_statement.final_balance) }}
                 </td>
                 <td class="py-4 px-6 text-center select-none" @click.stop>
-                  <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-100">
+                  <span 
+                    v-if="!rep.status || rep.status === 'success' || rep.status === 'completed'"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-100"
+                  >
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                     Selesai
                   </span>
+                  <span 
+                    v-else-if="rep.status === 'processing'"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-blue-50 text-blue-700 border border-blue-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-spin"></span>
+                    Memproses
+                  </span>
+                  <span 
+                    v-else-if="rep.status === 'failed'"
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-50 text-rose-700 border border-rose-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                    Gagal
+                  </span>
+                  <span 
+                    v-else
+                    class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-100"
+                  >
+                    <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    Tertunda
+                  </span>
+                </td>
+                <td class="py-4 px-6 text-center select-none" @click.stop>
+                  <div class="flex justify-center items-center">
+                    <span 
+                      v-if="!rep.status || rep.status === 'success' || rep.status === 'completed'"
+                      class="text-[10px] text-slate-400 font-bold uppercase tracking-wider flex items-center justify-center gap-1"
+                    >
+                      <CheckCircle2 class="w-3.5 h-3.5 text-slate-400" />
+                      Terestrak
+                    </span>
+                    <span 
+                      v-else-if="rep.status === 'processing'"
+                      class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-100 animate-pulse"
+                    >
+                      <RefreshCw class="w-3 h-3 text-blue-500 animate-spin" />
+                      Proses...
+                    </span>
+                    <button 
+                      v-else
+                      @click="triggerManualExtraction(rep)" 
+                      class="btn btn-xs bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:text-emerald-850 border border-emerald-200 hover:border-emerald-300 rounded-lg px-2.5 py-1 font-black text-[10px] uppercase tracking-wider h-7 min-h-0"
+                      title="Ekstrak ulang data dari rekening koran ini"
+                    >
+                      <Zap class="w-3 h-3 text-emerald-600 inline mr-1" />
+                      Ekstrak
+                    </button>
+                  </div>
                 </td>
                 <td class="py-4 px-6 text-center" @click.stop>
                   <div class="flex items-center justify-center gap-1.5">

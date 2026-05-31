@@ -60,6 +60,7 @@ export interface FinancialReport {
   generated_at: string;
   created_at: string;
   filename: string;
+  status?: 'pending' | 'processing' | 'success' | 'failed' | 'completed';
 }
 
 export interface FinancialAnalysis {
@@ -288,6 +289,7 @@ export const useFinancialStore = defineStore('financial', () => {
         filename: 'Rekening_Koran_Mei_2026.pdf',
         generated_at: new Date().toISOString(),
         created_at: new Date().toISOString(),
+        status: 'completed',
         bank_statement: {
           name: 'KOPI NUSANTARA SENOPATI',
           account_number: '124-00-98218-12',
@@ -297,6 +299,26 @@ export const useFinancialStore = defineStore('financial', () => {
           initial_balance: 24500000,
           final_balance: rollingBalance,
           transactions: mockTransactions
+        }
+      },
+      {
+        id: 'rep_02',
+        business_id: 'biz_01',
+        owner_uid: 'user_default',
+        file_url: 'https://storage.googleapis.com/vantage-ai/statements/rek_april_2026.pdf',
+        filename: 'Rekening_Koran_April_2026_Corrupted.pdf',
+        generated_at: new Date(now.getTime() - 30 * 24 * 3600 * 1000).toISOString(),
+        created_at: new Date(now.getTime() - 30 * 24 * 3600 * 1000).toISOString(),
+        status: 'failed',
+        bank_statement: {
+          name: 'KOPI NUSANTARA SENOPATI',
+          account_number: '124-00-98218-12',
+          period_start: `${currentYear}-${String(now.getMonth()).padStart(2, '0')}-01T00:00:00Z`,
+          period_end: `${currentYear}-${String(now.getMonth()).padStart(2, '0')}-28T23:59:59Z`,
+          currency: 'IDR',
+          initial_balance: 15000000,
+          final_balance: 24500000,
+          transactions: []
         }
       }
     ];
@@ -370,6 +392,7 @@ export const useFinancialStore = defineStore('financial', () => {
         filename: file.name,
         generated_at: now.toISOString(),
         created_at: now.toISOString(),
+        status: 'completed',
         bank_statement: {
           name: 'NEWLY PROCESSED BUSINESS',
           account_number: '888-21-990-12',

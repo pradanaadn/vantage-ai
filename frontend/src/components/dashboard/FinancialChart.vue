@@ -168,7 +168,7 @@ const yTicksB = computed(() => {
           <div class="flex items-center justify-between mb-3 select-none">
             <h4 class="text-sm font-black text-slate-800 flex items-center gap-2">
               <TrendingUp class="w-4.5 h-4.5 text-emerald-600" />
-              Chart A: Tren Saldo Kas
+              Grafik A: Tren Saldo Kas
             </h4>
             <span class="text-[9px] font-black uppercase tracking-wider text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-0.5 rounded-md">
               Tren Saldo
@@ -321,13 +321,13 @@ const yTicksB = computed(() => {
           <div class="flex items-center justify-between mb-3 select-none">
             <h4 class="text-sm font-black text-slate-800 flex items-center gap-2">
               <BarChart3 class="w-4.5 h-4.5 text-indigo-600" />
-              Chart B: Transaksi Masuk vs Keluar
+              Grafik B: Transaksi Masuk vs Keluar
             </h4>
             <span class="text-[9px] font-black uppercase tracking-wider text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-md">
               Arus Kas
             </span>
           </div>
-          <p class="text-[11px] text-slate-500 font-semibold mb-4 select-none">Komparasi volume transaksi harian masuk (inflow) vs keluar (outflow)</p>
+          <p class="text-[11px] text-slate-500 font-semibold mb-4 select-none">Komparasi volume transaksi harian masuk vs keluar</p>
         </div>
 
         <div class="relative w-full overflow-x-auto">
@@ -454,11 +454,11 @@ const yTicksB = computed(() => {
               Tanggal: {{ points[hoverIndexB].formattedDate }}
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-slate-300">Inflow (+):</span>
+              <span class="text-slate-300">Arus Masuk (+):</span>
               <span class="font-bold text-emerald-400 font-mono">{{ formatRupiah(points[hoverIndexB].income) }}</span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-slate-300">Outflow (-):</span>
+              <span class="text-slate-300">Arus Keluar (-):</span>
               <span class="font-bold text-rose-400 font-mono">{{ formatRupiah(points[hoverIndexB].expenses) }}</span>
             </div>
           </div>

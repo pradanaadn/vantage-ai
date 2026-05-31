@@ -96,16 +96,28 @@ class FinancialReport(BaseModel):
             return self.bank_statement.amount_by_category_and_day_date()
         return {}
 
+
 class FinancialAnalysis(BaseModel):
     report_id: str = Field(..., description="ID laporan keuangan yang dianalisis")
-    insights: list[str] = Field(..., description="Daftar insight dari analisis laporan keuangan")
-    warnings: list[str] = Field(..., description="Daftar peringatan dari analisis laporan keuangan")
-    health_score: float = Field(...,ge=0, le=100, description="Skor kesehatan keuangan berdasarkan analisis laporan keuangan")
+    insights: list[str] = Field(
+        ..., description="Daftar insight dari analisis laporan keuangan"
+    )
+    warnings: list[str] = Field(
+        ..., description="Daftar peringatan dari analisis laporan keuangan"
+    )
+    health_score: float = Field(
+        ...,
+        ge=0,
+        le=100,
+        description="Skor kesehatan keuangan berdasarkan analisis laporan keuangan",
+    )
     health_status: FinancialHealth | None = Field(
         None,
         description="Status kesehatan keuangan berdasarkan analisis laporan keuangan",
     )
-    recommendations: list[str] = Field(..., description="Daftar rekomendasi berdasarkan analisis laporan keuangan")
+    recommendations: list[str] = Field(
+        ..., description="Daftar rekomendasi berdasarkan analisis laporan keuangan"
+    )
 
     @model_validator(mode="after")
     def validate_health_status(self) -> "FinancialAnalysis":
@@ -124,5 +136,3 @@ def _status_from_score(score: float) -> FinancialHealth:
     if score >= 40:
         return FinancialHealth.AT_RISK
     return FinancialHealth.DISTRESSED
-    
-    
