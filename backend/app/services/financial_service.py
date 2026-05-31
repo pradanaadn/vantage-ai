@@ -13,6 +13,9 @@ from app.schemas.financial import (
     BankStatementCreate,
     BankStatementInDB,
     BankStatementUpdate,
+    FinancialAnalysisCreate,
+    FinancialAnalysisInDB,
+    FinancialAnalysisUpdate,
     FinancialReportCreate,
     FinancialReportCreateRequest,
     FinancialReportInDB,
@@ -167,4 +170,77 @@ async def delete_financial_report(report_id: str, owner_uid: str) -> bool:
         return firestore_financial.delete_financial_report(report_id, owner_uid)
     except GoogleAPIError as e:
         logger.error(f"Firestore error while deleting financial report {report_id}: {e}")
+        raise
+
+
+async def create_financial_analysis(
+    analysis_data: FinancialAnalysisCreate,
+    owner_uid: str,
+) -> FinancialAnalysisInDB:
+    try:
+        logger.info("Creating financial analysis")
+        return firestore_financial.create_financial_analysis(analysis_data, owner_uid)
+    except GoogleAPIError as e:
+        logger.error(f"Firestore error while creating financial analysis: {e}")
+        raise
+
+
+async def get_financial_analysis(
+    analysis_id: str,
+    owner_uid: str,
+) -> FinancialAnalysisInDB | None:
+    try:
+        logger.info(f"Fetching financial analysis {analysis_id}")
+        return firestore_financial.get_financial_analysis(analysis_id, owner_uid)
+    except GoogleAPIError as e:
+        logger.error(
+            f"Firestore error while fetching financial analysis {analysis_id}: {e}"
+        )
+        raise
+
+
+async def list_financial_analysis_by_business(
+    business_id: str,
+    owner_uid: str,
+) -> List[FinancialAnalysisInDB]:
+    try:
+        logger.info(f"Listing financial analysis for business {business_id}")
+        return firestore_financial.list_financial_analysis_by_business(
+            business_id,
+            owner_uid,
+        )
+    except GoogleAPIError as e:
+        logger.error(
+            f"Firestore error while listing financial analysis for business {business_id}: {e}"
+        )
+        raise
+
+
+async def update_financial_analysis(
+    analysis_id: str,
+    analysis_data: FinancialAnalysisUpdate,
+    owner_uid: str,
+) -> FinancialAnalysisInDB | None:
+    try:
+        logger.info(f"Updating financial analysis {analysis_id}")
+        return firestore_financial.update_financial_analysis(
+            analysis_id,
+            analysis_data,
+            owner_uid,
+        )
+    except GoogleAPIError as e:
+        logger.error(
+            f"Firestore error while updating financial analysis {analysis_id}: {e}"
+        )
+        raise
+
+
+async def delete_financial_analysis(analysis_id: str, owner_uid: str) -> bool:
+    try:
+        logger.info(f"Deleting financial analysis {analysis_id}")
+        return firestore_financial.delete_financial_analysis(analysis_id, owner_uid)
+    except GoogleAPIError as e:
+        logger.error(
+            f"Firestore error while deleting financial analysis {analysis_id}: {e}"
+        )
         raise

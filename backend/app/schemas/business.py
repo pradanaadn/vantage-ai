@@ -44,6 +44,14 @@ class BusinessUpdate(BaseModel):
     analysis: Optional[List[BussinessAnalysis]] = None
 
 
+class BusinessAnalyzeRequest(BaseModel):
+    business_id: str
+
+
+class BusinessAnalyzeResponse(BaseModel):
+    flow_run_id: str
+
+
 class BusinessInDB(BusinessBase):
     id: str
     owner_uid: str

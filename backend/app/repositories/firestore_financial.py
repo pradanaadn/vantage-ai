@@ -9,6 +9,9 @@ from app.schemas.financial import (
     BankStatementCreate,
     BankStatementInDB,
     BankStatementUpdate,
+    FinancialAnalysisCreate,
+    FinancialAnalysisInDB,
+    FinancialAnalysisUpdate,
     FinancialReportCreate,
     FinancialReportInDB,
     FinancialReportUpdate,
@@ -16,6 +19,7 @@ from app.schemas.financial import (
 
 BANK_STATEMENTS_COLLECTION = "bank_statements"
 FINANCIAL_REPORTS_COLLECTION = "financial_reports"
+FINANCIAL_ANALYSIS_COLLECTION = "financial_analysis"
 
 
 def _db():
@@ -172,5 +176,82 @@ def delete_financial_report(report_id: str, owner_uid: str) -> bool:
     payload = doc.to_dict() or {} # pyright: ignore[reportAttributeAccessIssue]
     if payload.get("owner_uid") != owner_uid:
         raise PermissionError("Financial report does not belong to the user")
+    doc_ref.delete()
+    return True
+
+
+def create_financial_analysis(
+    analysis_data: FinancialAnalysisCreate,
+    owner_uid: str,
+) -> FinancialAnalysisInDB:
+    doc_ref = _db().collection(FINANCIAL_ANALYSIS_COLLECTION).document()
+    payload = analysis_data.model_dump(exclude_none=True)
+    payload["owner_uid"] = owner_uid
+    doc_ref.set(payload)
+    return FinancialAnalysisInDB.model_validate({"id": doc_ref.id, **payload})
+
+
+def get_financial_analysis(
+    analysis_id: str,
+    owner_uid: str,
+) -> Optional[FinancialAnalysisInDB]:
+    doc_ref = _db().collection(FINANCIAL_ANALYSIS_COLLECTION).document(analysis_id)
+    doc = doc_ref.get()
+    if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
+        return None
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Financial analysis does not belong to the user")
+    return FinancialAnalysisInDB.model_validate({"id": doc.id, **payload})
+
+
+def list_financial_analysis_by_business(
+    business_id: str,
+    owner_uid: str,
+) -> List[FinancialAnalysisInDB]:
+    docs = (
+        _db()
+        .collection(FINANCIAL_ANALYSIS_COLLECTION)
+        .where(filter=FieldFilter("business_id", "==", business_id))
+        .where(filter=FieldFilter("owner_uid", "==", owner_uid))
+        .stream()
+    )
+    results: List[FinancialAnalysisInDB] = []
+    for doc in docs:
+        payload = doc.to_dict() or {}
+        results.append(FinancialAnalysisInDB.model_validate({"id": doc.id, **payload}))
+    return results
+
+
+def update_financial_analysis(
+    analysis_id: str,
+    analysis_data: FinancialAnalysisUpdate,
+    owner_uid: str,
+) -> Optional[FinancialAnalysisInDB]:
+    doc_ref = _db().collection(FINANCIAL_ANALYSIS_COLLECTION).document(analysis_id)
+    doc = doc_ref.get()
+    if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
+        return None
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Financial analysis does not belong to the user")
+
+    update_payload = analysis_data.model_dump(exclude_none=True)
+    if update_payload:
+        doc_ref.update(update_payload)
+
+    updated = doc_ref.get()
+    payload = updated.to_dict() or {} # pyright: ignore[reportAttributeAccessIssue]
+    return FinancialAnalysisInDB.model_validate({"id": updated.id, **payload})
+
+
+def delete_financial_analysis(analysis_id: str, owner_uid: str) -> bool:
+    doc_ref = _db().collection(FINANCIAL_ANALYSIS_COLLECTION).document(analysis_id)
+    doc = doc_ref.get()
+    if not doc.exists: # pyright: ignore[reportAttributeAccessIssue]
+        return False
+    payload = doc.to_dict() or {} # type: ignore
+    if payload.get("owner_uid") != owner_uid:
+        raise PermissionError("Financial analysis does not belong to the user")
     doc_ref.delete()
     return True

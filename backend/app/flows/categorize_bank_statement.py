@@ -23,6 +23,7 @@ from app.services.bank_statement_categorize import (
     check_batch_job_status,
     get_bank_statement_from_batch_result,
 )
+from app.flows.secret_task import gemini_secret
 
 
 @task(name="Extract Blob Path")
@@ -72,24 +73,44 @@ def categorize_bank_statement(
     bank_statement_file_url: str,
     bussiness_id: str,
     id_token: str | None = None,
-    gcp_block_name: str | None = None,
+    developer_mode: bool = True,
+    gcp_block_name: str | None = "gcp-sa",
 ):
-    service_account_info = (
-        load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
-    )
-    if not service_account_info and id_token:
+    try:
+        service_account_info = (
+            load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
+        )
+    except Exception as e:
+        logger.error(f"Error loading GCP credentials block: {e}")
+        if developer_mode:
+            logger.warning("Developer mode enabled, proceeding without GCP credentials.")
+            service_account_info = None
+        else:
+            raise ValueError("Failed to load GCP credentials block.") from e
+        
+    if not service_account_info and id_token and not developer_mode:
         logger.warning(
             "ID token provided without GCP credentials block. Firebase initialization may fail."
         )
         raise ValueError("GCP credentials block is required when ID token is provided.")
     
-    init_firebase(service_account_info)
+    init_firebase(service_account_info.get_secret_value() if service_account_info else None)
+
+    try:
+        gemini_api_key = gemini_secret("gemini-api-key")
+    except Exception as e:
+        logger.error(f"Error retrieving Gemini API key from Prefect Secret: {e}")
+        raise
     if id_token:
         verify_firebase_token(id_token)
+        
+    with open("prompts/bank_statement_classifier.md", "r") as f:
+        system_instruction = f.read()
     file_data = download_file_from_firebase(bank_statement_file_url)
     batch_job = analyze_and_categorize_statement_batch(
         bank_statement=file_data,
-        system_instruction="Extract and categorize the data from this bank statement.",
+        system_instruction=system_instruction,
+        api_key=gemini_api_key,
     )
 
     run_deployment(
@@ -100,25 +121,44 @@ def categorize_bank_statement(
             "bussiness_id": bussiness_id,
             "gcp_block_name": gcp_block_name,
         },
+        timeout=0
     )
 
 
-@flow(name="check-batch-result",log_prints=True, retries=3, retry_delay_seconds=15)
+@flow(name="check-batch-result",log_prints=True, retries=3, retry_delay_seconds=300)
 def check_batch_result(
     batch_job_name: str,
     bank_statement_file_url: str,
     bussiness_id: str,
-    gcp_block_name: str | None = None,
+    gcp_block_name: str | None = "gcp-sa",
+    developer_mode: bool = True,
+
 ) -> FinancialReport | None:
-    service_account_info = (
-        load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
-    )
-    if not service_account_info:
-        logger.warning(
-            "GCP credentials block not provided. Firebase initialization may fail."
+    try:
+        service_account_info = (
+            load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
         )
-        raise ValueError("GCP credentials block is required for this flow.")
-    init_firebase(service_account_info)
+    except Exception as e:
+        logger.error(f"Error loading GCP credentials block: {e}")
+        if developer_mode:
+            logger.warning("Developer mode enabled, proceeding without GCP credentials.")
+            service_account_info = None
+        else:
+            raise ValueError("Failed to load GCP credentials block.") from e
+        
+    if not service_account_info and not developer_mode:
+        logger.warning(
+            "ID token provided without GCP credentials block. Firebase initialization may fail."
+        )
+        raise ValueError("GCP credentials block is required when ID token is provided.")
+    
+    init_firebase(service_account_info.get_secret_value() if service_account_info else None)
+
+    try:
+        gemini_api_key = gemini_secret("gemini-api-key")
+    except Exception as e:
+        logger.error(f"Error retrieving Gemini API key from Prefect Secret: {e}")
+        raise
     owner_uid = firestore_business.get_business_owner_uid(bussiness_id)
     if not owner_uid:
         logger.error(
@@ -126,7 +166,12 @@ def check_batch_result(
             bussiness_id,
         )
         return None
-    batch_job = check_batch_job_status(batch_job_name)
+    try:
+        gemini_api_key = gemini_secret("gemini-api-key")
+    except Exception as e:
+        logger.error(f"Error retrieving Gemini API key from Prefect Secret: {e}")
+        raise
+    batch_job = check_batch_job_status(batch_job_name, api_key=gemini_api_key)
     if batch_job.state == types.JobState.JOB_STATE_SUCCEEDED:
         bank_statement_data = get_bank_statement_from_batch_result(batch_job)
         generated_at = batch_job.update_time or datetime.now(
@@ -157,3 +202,10 @@ def check_batch_result(
 
     logger.info(f"Batch job is in state: {batch_job.state}. Retrying soon.")
     raise RuntimeError("Batch job not ready.")
+
+if __name__ == "__main__":
+    from prefect import serve
+    flow_1 = categorize_bank_statement.to_deployment("categorize-bank-statement")
+    flow_2 = check_batch_result.to_deployment("check-batch-result")
+    serve(flow_1, flow_2)
+

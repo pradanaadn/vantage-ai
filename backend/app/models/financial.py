@@ -95,6 +95,20 @@ class FinancialReport(BaseModel):
         if self.bank_statement:
             return self.bank_statement.amount_by_category_and_day_date()
         return {}
+    
+    def amount_by_category_and_subcategory(self) -> dict[str, dict[str, float]]:
+        """Menghitung total jumlah per kategori dan subkategori transaksi dari bank statement."""
+        totals = {}
+        if self.bank_statement:
+            for txn in self.bank_statement.transactions:
+                category = txn.category
+                subcategory = txn.subcategory or "Uncategorized"
+                if category not in totals:
+                    totals[category] = {}
+                if subcategory not in totals[category]:
+                    totals[category][subcategory] = 0.0
+                totals[category][subcategory] += txn.amount
+        return totals
 
 
 class FinancialAnalysis(BaseModel):

@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Optional
 from pydantic import BaseModel
 
-from app.models.financial import BankStatement
+from app.models.financial import BankStatement, FinancialAnalysis
 from app.schemas.file_upload import FileUpload
 
 
@@ -66,5 +66,21 @@ class BankStatementUploadResponse(BaseModel):
 
 class BankStatementCategorizeResponse(BaseModel):
     flow_run_id: str
+
+
+class FinancialAnalysisCreate(BaseModel):
+    business_id: str
+    analysis: FinancialAnalysis
+    created_at: datetime
+
+
+class FinancialAnalysisUpdate(BaseModel):
+    analysis: FinancialAnalysis | None = None
+    created_at: datetime | None = None
+
+
+class FinancialAnalysisInDB(FinancialAnalysisCreate):
+    id: str
+    owner_uid: str
 
 

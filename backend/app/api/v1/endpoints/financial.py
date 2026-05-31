@@ -5,6 +5,7 @@ from app.schemas.financial import (
     BankStatementCategorizeResponse,
     BankStatementUploadRequest,
     BankStatementUploadResponse,
+    FinancialAnalysisInDB,
     FinancialReportInDB,
 )
 from app.services import business_service
@@ -39,11 +40,12 @@ async def extract_and_categorize_bank_statement(
 ) -> BankStatementCategorizeResponse:
     await _ensure_business_owner(payload.business_id, current_user.uid)
     flow_run = await arun_deployment(
-        "categorize-bank-statement",
+        "categorize-bank-statement/categorize-bank-statement",
         parameters={
             "bank_statement_file_url": payload.file_url,
             "bussiness_id": payload.business_id,
         },
+        timeout=0
     )
     if not flow_run:
         raise HTTPException(
@@ -131,3 +133,95 @@ async def get_financial_summary(
         business_id,
         current_user.uid,
     )
+
+
+@router.get("/reports", status_code=status.HTTP_200_OK)
+async def list_financial_reports(
+    business_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> list[FinancialReportInDB]:
+    await _ensure_business_owner(business_id, current_user.uid)
+    return await financial_service.list_financial_reports_by_business(
+        business_id,
+        current_user.uid,
+    )
+
+
+@router.get("/reports/{report_id}", response_model=FinancialReportInDB)
+async def get_financial_report(
+    report_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> FinancialReportInDB:
+    try:
+        report = await financial_service.get_financial_report(
+            report_id,
+            current_user.uid,
+        )
+    except PermissionError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Forbidden",
+        )
+    if not report:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Financial report not found.",
+        )
+    return report
+
+
+@router.delete("/reports/{report_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_financial_report(
+    report_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> None:
+    try:
+        deleted = await financial_service.delete_financial_report(
+            report_id,
+            current_user.uid,
+        )
+    except PermissionError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Forbidden",
+        )
+    if not deleted:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Financial report not found.",
+        )
+
+
+@router.get("/analysis", status_code=status.HTTP_200_OK)
+async def list_financial_analysis(
+    business_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> list[FinancialAnalysisInDB]:
+    await _ensure_business_owner(business_id, current_user.uid)
+    return await financial_service.list_financial_analysis_by_business(
+        business_id,
+        current_user.uid,
+    )
+
+
+@router.get("/analysis/{analysis_id}", response_model=FinancialAnalysisInDB)
+async def get_financial_analysis(
+    analysis_id: str,
+    current_user: UserInfo = Depends(get_current_user),
+) -> FinancialAnalysisInDB:
+    try:
+        analysis = await financial_service.get_financial_analysis(
+            analysis_id,
+            current_user.uid,
+        )
+    except PermissionError:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Forbidden",
+        )
+    if not analysis:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Financial analysis not found.",
+        )
+    return analysis

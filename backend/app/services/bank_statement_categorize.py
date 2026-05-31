@@ -3,7 +3,7 @@ from google import genai
 from google.genai import types
 from loguru import logger
 from pydantic import ValidationError
-from backend.app.models.financial import BankStatement
+from app.models.financial import BankStatement
 from app.schemas.file_upload import FileUpload
 
 TEMPERATURE = 0.3
@@ -13,9 +13,11 @@ API_KEY = ""
 def analyze_and_categorize_statement_batch(
     bank_statement: FileUpload,
     system_instruction: str,
+    api_key: str ,
+    temperature: float = TEMPERATURE,
     model_name: str = "gemini-flash-latest",
 ) -> types.BatchJob:
-    client = genai.Client(api_key=API_KEY)
+    client = genai.Client(api_key=api_key)
 
     # 1. Configure and upload the file to Gemini File API
     config = types.UploadFileConfig(
@@ -56,7 +58,7 @@ def analyze_and_categorize_statement_batch(
             system_instruction=system_instruction,
             response_mime_type="application/json",
             response_schema=BankStatement,
-            temperature=TEMPERATURE,
+            temperature=temperature,
         ),
     )
     try:
@@ -72,8 +74,8 @@ def analyze_and_categorize_statement_batch(
     return batch_job
 
 
-def check_batch_job_status(batch_job_name: str) -> types.BatchJob:
-    client = genai.Client(api_key=API_KEY)
+def check_batch_job_status(batch_job_name: str , api_key:str) -> types.BatchJob:
+    client = genai.Client(api_key=api_key)
     batch_job = client.batches.get(name=batch_job_name)
     logger.info(f"Batch job status: {batch_job.state}")
     return batch_job
@@ -107,7 +109,7 @@ def get_bank_statement_from_batch_result(batch_job: types.BatchJob) -> BankState
     
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # with open("data/output/statement_1d.pdf", "rb") as f:
     #     file_data = f.read()
 
@@ -128,7 +130,7 @@ if __name__ == "__main__":
     # logger.info(f"Batch job submitted successfully. Job Name: {batch_job.name}")
     # # import time
     # # while True:
-    job_status = check_batch_job_status(batch_job_name="batches/zpdk2xodrz3z65tc0ve92bj8y7vm2vmuydoi")
-    logger.info(f"Batch job status: {job_status}")
-    # print(job_status.dest.inlined_responses[0].response.candidates[0].content.parts[0].text)
-    print(get_bank_statement_from_batch_result(job_status))
+    # job_status = check_batch_job_status(batch_job_name="batches/zpdk2xodrz3z65tc0ve92bj8y7vm2vmuydoi")
+    # logger.info(f"Batch job status: {job_status}")
+    # # print(job_status.dest.inlined_responses[0].response.candidates[0].content.parts[0].text)
+    # print(get_bank_statement_from_batch_result(job_status))
