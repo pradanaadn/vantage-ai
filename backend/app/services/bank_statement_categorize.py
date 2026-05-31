@@ -7,7 +7,7 @@ from backend.app.models.financial import BankStatement
 from app.schemas.file_upload import FileUpload
 
 TEMPERATURE = 0.3
-API_KEY = "AIzaSyDQtKjqBxCt_WcBpGK8BErezfqrEY2KE-w"
+API_KEY = ""
 
 
 def analyze_and_categorize_statement_batch(

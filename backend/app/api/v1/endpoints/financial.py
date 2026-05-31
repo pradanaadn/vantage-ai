@@ -36,6 +36,31 @@ async def extract_and_categorize_bank_statement(
         )
     return BankStatementCategorizeResponse(flow_run_id=str(flow_run.id))
 
+@router.post("/bank-statement/test", status_code=status.HTTP_201_CREATED)
+async def test(
+    payload: BankStatementUploadRequest,
+) -> BankStatementCategorizeResponse:
+    flow_run = await arun_deployment(
+        "test-categorize-bank-statement/test-categorize-bank-statement",
+        parameters={
+            "bussiness_id": payload.business_id,
+        },
+        timeout=0
+    )
+    if not flow_run:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to start bank statement categorization flow.",
+        )
+    if not flow_run.id:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Flow run did not return a valid ID.",
+        )
+    return BankStatementCategorizeResponse(flow_run_id=str(flow_run.id))
+
+
+
 
 @router.post("/bank-statement/upload", status_code=status.HTTP_201_CREATED)
 async def upload_bank_statement_file(

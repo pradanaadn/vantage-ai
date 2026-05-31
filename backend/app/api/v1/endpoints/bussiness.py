@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status
+from app.api.deps import get_current_user
 from app.schemas.business import BusinessCreate, BusinessInDB, BusinessUpdate
 from app.services import business_service
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 
 @router.get("/", response_model=list[BusinessInDB])

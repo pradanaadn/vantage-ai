@@ -4,6 +4,7 @@ from typing import List
 from enum import Enum
 from .financial import FinancialReport
 
+
 class CompetitorType(str, Enum):
     DIRECT = "Direct"
     INDIRECT = "Indirect"
@@ -55,25 +56,25 @@ class Business(BaseModel):
     )
 
 
-class Competitor(BaseModel):
-    analysis_date: datetime = Field(..., description="Tanggal analisis dilakukan")
-    name: str = Field(..., description="Nama kompetitor")
-    industry: str = Field(..., description="Industri kompetitor")
-    google_maps_rating: float = Field(
-        ..., description="Rating kompetitor di Google Maps"
-    )
-    competitor_type: CompetitorType = Field(..., description="Tipe kompetitor")
-    competitor_analysis: list[BussinessAnalysis] | None = Field(
-        None, description="Analisis kompetitor"
-    )
+class BusinessResearchResult(BaseModel):
+    name: str = Field(..., description="Nama bisnis")
+    industry: str = Field(..., description="Industri bisnis")
+    google_maps_url: str = Field(..., description="URL Google Maps bisnis")
+    google_maps_rating: float = Field(..., description="Rating bisnis di Google Maps")
     google_maps_number_of_reviews: int = Field(
-        ..., description="Jumlah ulasan kompetitor di Google Maps"
+        ..., description="Jumlah ulasan bisnis di Google Maps"
     )
-    google_maps_url: str = Field(..., description="URL Google Maps kompetitor")
-    location: Location = Field(..., description="Lokasi kompetitor")
+    location: Location = Field(..., description="Lokasi bisnis")
+    analysis: list[BussinessAnalysis] = Field(description="Analisis bisnis")
+    analysis_date: datetime = Field(..., description="Tanggal analisis dilakukan")
 
 
-BussinessCompetitor = List[Competitor]
+class Competitor(BusinessResearchResult):
+    competitor_type: CompetitorType = Field(..., description="Tipe kompetitor")
+
+
+class BussinessCompetitor(BaseModel):
+    competitors: list[Competitor] = Field(..., description="Daftar kompetitor bisnis")
 
 if __name__ == "__main__":
     # # Example usage

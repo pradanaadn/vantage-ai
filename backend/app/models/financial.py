@@ -1,9 +1,9 @@
-from enum import Enum
 from datetime import datetime
+from enum import Enum
+
 from pydantic import BaseModel, Field
 
 
-    
 class TransactionType(str, Enum):
     CREDIT = "credit"
     DEBIT = "debit"
@@ -43,13 +43,47 @@ class BankStatement(BaseModel):
     transactions: list[Transaction] = Field(
         ..., description="Daftar transaksi dalam periode"
     )
-    
 
-    
+    def amount_by_category(self) -> dict[str, float]:
+        """Menghitung total jumlah per kategori transaksi."""
+        totals = {}
+        for txn in self.transactions:
+            if txn.category not in totals:
+                totals[txn.category] = 0.0
+            totals[txn.category] += txn.amount
+        return totals
+
+    def amount_by_category_and_day_date(self) -> dict[str, dict[str, float]]:
+        """Menghitung total jumlah per kategori transaksi per tanggal."""
+        totals = {}
+        for txn in self.transactions:
+            date_str = txn.date.strftime("%Y-%m-%d")
+            if date_str not in totals:
+                totals[date_str] = {}
+            if txn.category not in totals[date_str]:
+                totals[date_str][txn.category] = 0.0
+            totals[date_str][txn.category] += txn.amount
+        return totals
+
+
 class FinancialReport(BaseModel):
     file_url: str = Field(..., description="URL file laporan keuangan")
-    bank_statement: BankStatement | None = Field(..., description="Data bank statement yang diproses")
+    bank_statement: BankStatement | None = Field(
+        ..., description="Data bank statement yang diproses"
+    )
     generated_at: datetime = Field(..., description="Waktu laporan keuangan dibuat")
-    created_at: datetime = Field(..., description="Waktu laporan keuangan disimpan dalam sistem")
-    
-    
+    created_at: datetime = Field(
+        ..., description="Waktu laporan keuangan disimpan dalam sistem"
+    )
+
+    def amount_by_category(self) -> dict[str, float]:
+        """Menghitung total jumlah per kategori transaksi dari bank statement."""
+        if self.bank_statement:
+            return self.bank_statement.amount_by_category()
+        return {}
+
+    def amount_by_category_and_day_date(self) -> dict[str, dict[str, float]]:
+        """Menghitung total jumlah per kategori transaksi per tanggal dari bank statement."""
+        if self.bank_statement:
+            return self.bank_statement.amount_by_category_and_day_date()
+        return {}
