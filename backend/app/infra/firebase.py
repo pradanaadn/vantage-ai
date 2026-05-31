@@ -8,8 +8,7 @@ class EmulatorCredential(credentials.Base):
     def get_credential(self):
         return AnonymousCredentials()
 
-def initialize_firebase():
-    
+def initialize_firebase(service_account_info: dict | None = None):
     if firebase_admin._apps:
         return firebase_admin.get_app()
 
@@ -23,7 +22,9 @@ def initialize_firebase():
         cred = EmulatorCredential()
     else:
         print("🚀 Initializing Firebase in PRODUCTION mode")
-        if settings.FIREBASE_SERVICE_ACCOUNT_PATH:
+        if service_account_info:
+            cred = credentials.Certificate(service_account_info)
+        elif settings.FIREBASE_SERVICE_ACCOUNT_PATH:
             cred = credentials.Certificate(settings.FIREBASE_SERVICE_ACCOUNT_PATH)
         else:
             # Uses Application Default Credentials

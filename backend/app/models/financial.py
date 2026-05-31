@@ -98,7 +98,6 @@ class FinancialReport(BaseModel):
 
 
 class FinancialAnalysis(BaseModel):
-    report_id: str = Field(..., description="ID laporan keuangan yang dianalisis")
     insights: list[str] = Field(
         ..., description="Daftar insight dari analisis laporan keuangan"
     )
@@ -111,6 +110,8 @@ class FinancialAnalysis(BaseModel):
         le=100,
         description="Skor kesehatan keuangan berdasarkan analisis laporan keuangan",
     )
+    start_date: datetime = Field(..., description="Tanggal awal periode analisis")
+    end_date: datetime = Field(..., description="Tanggal akhir periode analisis")
     health_status: FinancialHealth | None = Field(
         None,
         description="Status kesehatan keuangan berdasarkan analisis laporan keuangan",

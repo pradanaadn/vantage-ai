@@ -7,14 +7,17 @@ import mimetypes
 from firebase_admin import storage
 from google.genai import types
 from loguru import logger
-from prefect import flow
+from prefect import flow, task
 from prefect.deployments import run_deployment
-
-from app.infra.firebase import initialize_firebase
 from app.models.financial import FinancialReport
 from app.repositories import firestore_business, firestore_financial
 from app.schemas.file_upload import FileUpload
 from app.schemas.financial import FinancialReportCreate
+from app.flows.firebase_tasks import (
+    init_firebase,
+    load_gcp_credentials_block,
+    verify_firebase_token,
+)
 from app.services.bank_statement_categorize import (
     analyze_and_categorize_statement_batch,
     check_batch_job_status,
@@ -22,7 +25,8 @@ from app.services.bank_statement_categorize import (
 )
 
 
-def _extract_blob_path(file_url: str) -> Tuple[str | None, str]:
+@task(name="Extract Blob Path")
+def extract_blob_path(file_url: str) -> Tuple[str | None, str]:
     parsed = urlparse(file_url)
     if parsed.scheme == "gs":
         return parsed.netloc, parsed.path.lstrip("/")
@@ -48,9 +52,9 @@ def _extract_blob_path(file_url: str) -> Tuple[str | None, str]:
 
     raise ValueError("Unsupported Firebase Storage URL format.")
 
-
-def _download_file_from_firebase(file_url: str) -> FileUpload:
-    bucket_name, object_path = _extract_blob_path(file_url)
+@task(name="Download File from Firebase")
+def download_file_from_firebase(file_url: str) -> FileUpload:
+    bucket_name, object_path = extract_blob_path(file_url)
     bucket = storage.bucket(bucket_name) if bucket_name else storage.bucket()
     blob = bucket.blob(object_path)
     data = blob.download_as_bytes()
@@ -64,31 +68,57 @@ def _download_file_from_firebase(file_url: str) -> FileUpload:
 
 
 @flow(log_prints=True)
-def categorize_bank_statement(bank_statement_file_url: str, bussiness_id: str):
-    initialize_firebase()
-    file_data = _download_file_from_firebase(bank_statement_file_url)
+def categorize_bank_statement(
+    bank_statement_file_url: str,
+    bussiness_id: str,
+    id_token: str | None = None,
+    gcp_block_name: str | None = None,
+):
+    service_account_info = (
+        load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
+    )
+    if not service_account_info and id_token:
+        logger.warning(
+            "ID token provided without GCP credentials block. Firebase initialization may fail."
+        )
+        raise ValueError("GCP credentials block is required when ID token is provided.")
+    
+    init_firebase(service_account_info)
+    if id_token:
+        verify_firebase_token(id_token)
+    file_data = download_file_from_firebase(bank_statement_file_url)
     batch_job = analyze_and_categorize_statement_batch(
         bank_statement=file_data,
         system_instruction="Extract and categorize the data from this bank statement.",
     )
 
     run_deployment(
-        "check_batch_job_status",
+        "check-batch-result/check-batch-result",
         parameters={
             "batch_job_name": batch_job.name,
             "bank_statement_file_url": bank_statement_file_url,
             "bussiness_id": bussiness_id,
+            "gcp_block_name": gcp_block_name,
         },
     )
 
 
-@flow(log_prints=True, retries=3, retry_delay_seconds=15)
+@flow(name="check-batch-result",log_prints=True, retries=3, retry_delay_seconds=15)
 def check_batch_result(
     batch_job_name: str,
     bank_statement_file_url: str,
     bussiness_id: str,
+    gcp_block_name: str | None = None,
 ) -> FinancialReport | None:
-    initialize_firebase()
+    service_account_info = (
+        load_gcp_credentials_block(gcp_block_name) if gcp_block_name else None
+    )
+    if not service_account_info:
+        logger.warning(
+            "GCP credentials block not provided. Firebase initialization may fail."
+        )
+        raise ValueError("GCP credentials block is required for this flow.")
+    init_firebase(service_account_info)
     owner_uid = firestore_business.get_business_owner_uid(bussiness_id)
     if not owner_uid:
         logger.error(
